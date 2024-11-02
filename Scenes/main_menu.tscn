@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://p2n8wpbdrtmx"]
+[gd_scene load_steps=3 format=3 uid="uid://p2n8wpbdrtmx"]
 
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_dcdpj"]
 [ext_resource type="Texture2D" uid="uid://dby0laudby5ul" path="res://Assets/edc.png" id="1_plwv3"]
 
 [node name="MainMenu" type="Node2D"]
@@ -20,6 +21,7 @@ anchors_preset = 0
 offset_top = -1.0
 offset_right = 40.0
 offset_bottom = 39.0
+script = ExtResource("1_dcdpj")
 
 [node name="Label" type="Label" parent="Control"]
 z_index = 1
@@ -38,14 +40,18 @@ offset_top = 349.0
 offset_right = 553.0
 offset_bottom = 450.0
 
-[node name="Button" type="Button" parent="Control/VBoxContainer"]
+[node name="Start Button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Start"
 
-[node name="Button2" type="Button" parent="Control/VBoxContainer"]
+[node name="Continue Button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Continue"
 
-[node name="Button3" type="Button" parent="Control/VBoxContainer"]
+[node name="Options Button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Options"
+
+[connection signal="pressed" from="Control/VBoxContainer/Start Button" to="Control" method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Continue Button" to="Control" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Options Button" to="Control" method="_on_options_button_pressed"]
