@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://c1ifcmjlefw85"]
+[gd_scene load_steps=11 format=4 uid="uid://c1ifcmjlefw85"]
 
 [ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/parallax/back.png" id="1_sn3yr"]
 [ext_resource type="Texture2D" uid="uid://klsydffe6wrq" path="res://Assets/tileTest2.png" id="1_tq8xh"]
@@ -37,6 +37,10 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_l3frx")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6lme"]
+
+[sub_resource type="Environment" id="Environment_x2mid"]
+background_mode = 1
+background_color = Color(0.156863, 0.113725, 0.317647, 1)
 
 [node name="Game" type="Node2D"]
 
@@ -90,3 +94,6 @@ texture = ExtResource("5_a8sgf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(-2, -10)
 shape = SubResource("RectangleShape2D_g6lme")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x2mid")
