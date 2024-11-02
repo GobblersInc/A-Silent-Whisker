@@ -1,19 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://p2n8wpbdrtmx"]
+[gd_scene load_steps=2 format=3 uid="uid://p2n8wpbdrtmx"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_dcdpj"]
-[ext_resource type="Texture2D" uid="uid://dby0laudby5ul" path="res://Assets/edc.png" id="1_plwv3"]
 
 [node name="MainMenu" type="Node2D"]
-
-[node name="TextureRect" type="TextureRect" parent="."]
-z_index = -8
-offset_left = -1.0
-offset_top = -3.0
-offset_right = 620.0
-offset_bottom = 512.0
-scale = Vector2(1.85798, 1.28425)
-texture = ExtResource("1_plwv3")
-stretch_mode = 5
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -26,19 +15,19 @@ script = ExtResource("1_dcdpj")
 [node name="Label" type="Label" parent="Control"]
 z_index = 1
 layout_mode = 0
-offset_left = 455.0
-offset_top = 306.0
-offset_right = 581.0
-offset_bottom = 329.0
+offset_left = 106.0
+offset_top = 44.0
+offset_right = 232.0
+offset_bottom = 67.0
 text = "A Silent Whisker"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 z_index = 1
 layout_mode = 0
-offset_left = 474.0
-offset_top = 349.0
-offset_right = 553.0
-offset_bottom = 450.0
+offset_left = 125.0
+offset_top = 87.0
+offset_right = 204.0
+offset_bottom = 188.0
 
 [node name="Start Button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
