@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diwkkh4cgil6d"
-path="res://.godot/imported/CatNotStill.png-3ed259df8a6ee11ca3bab09c1e9f69a4.ctex"
+uid="uid://d3p74cqe0foxa"
+path="res://.godot/imported/tilesheet4x4.png-f782264e852608d0084742633f1b3e84.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/CatNotStill.png"
-dest_files=["res://.godot/imported/CatNotStill.png-3ed259df8a6ee11ca3bab09c1e9f69a4.ctex"]
+source_file="res://Assets/TileSheets/tilesheet4x4.png"
+dest_files=["res://.godot/imported/tilesheet4x4.png-f782264e852608d0084742633f1b3e84.ctex"]
 
 [params]
 
