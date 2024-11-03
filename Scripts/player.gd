@@ -67,6 +67,16 @@ func _physics_process(delta):
 	if is_touching_wall and not is_grounded and velocity.y > 0:
 		is_wall_sliding = true
 		velocity.y = min(velocity.y, wall_slide_speed)
+		
+		var collision = get_last_slide_collision()
+		if collision:
+			var wall_normal = collision.get_normal()
+			if wall_normal.x < 0:
+				animated_sprite.rotation_degrees = -90
+			elif wall_normal.x > 0:
+				animated_sprite.rotation_degrees = 90
+	else:
+		animated_sprite.rotation_degrees = 0
 	
 	if jump:
 		if coyote_time_remaining > 0.0:
