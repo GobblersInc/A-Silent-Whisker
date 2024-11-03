@@ -89,6 +89,7 @@ background_color = Color(0.156863, 0.113725, 0.317647, 1)
 [node name="ParallaxBgFar" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayerFar" type="ParallaxLayer" parent="ParallaxBgFar"]
+motion_scale = Vector2(0.2, 1)
 motion_mirroring = Vector2(288, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBgFar/ParallaxLayerFar"]
@@ -98,6 +99,7 @@ centered = false
 [node name="ParallaxBgBack" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayerBack" type="ParallaxLayer" parent="ParallaxBgBack"]
+motion_scale = Vector2(0.4, 1)
 motion_mirroring = Vector2(288, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBgBack/ParallaxLayerBack"]
@@ -107,6 +109,7 @@ centered = false
 [node name="ParallaxBgForeground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayerFore" type="ParallaxLayer" parent="ParallaxBgForeground"]
+motion_scale = Vector2(0.8, 1)
 motion_mirroring = Vector2(288, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBgForeground/ParallaxLayerFore"]
