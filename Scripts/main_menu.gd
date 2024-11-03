@@ -8,5 +8,5 @@ func _on_continue_button_pressed():
 	print("Continue button pressed") 
 
 func _on_options_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/optionsmenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/SettingMenu.tscn")
 	print("Options button pressed") 
