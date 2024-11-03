@@ -2,24 +2,24 @@
 
 [ext_resource type="Script" path="res://Scripts/Managers/SettingManager.gd" id="1_uw6o3"]
 
-[sub_resource type="SystemFont" id="SystemFont_2ckkm"]
+[sub_resource type="SystemFont" id="SystemFont_1crf0"]
 font_names = PackedStringArray("")
 font_weight = 900
 oversampling = 3.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_61r7a"]
-font = SubResource("SystemFont_2ckkm")
+font = SubResource("SystemFont_1crf0")
 font_size = 25
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="SystemFont" id="SystemFont_7ray1"]
+[sub_resource type="SystemFont" id="SystemFont_a74in"]
 font_names = PackedStringArray("")
 font_weight = 900
 oversampling = 3.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ouhym"]
-font = SubResource("SystemFont_7ray1")
+font = SubResource("SystemFont_a74in")
 font_size = 20
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)

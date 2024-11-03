@@ -108,3 +108,7 @@ func get_wall_jump_direction() -> int:
 			elif collision.get_normal().x < 0:
 				return 1
 	return 0
+
+
+func _on_button_pressed():
+	pass # Replace with function body.
