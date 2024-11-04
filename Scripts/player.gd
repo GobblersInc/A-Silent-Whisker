@@ -55,7 +55,7 @@ func _physics_process(delta):
 	var direction = last_direction_pressed
 	
 	var sprint := Input.is_action_pressed("move_fast")
-	var jump := Input.is_action_pressed("move_up")
+	var jump := Input.is_action_just_pressed("move_up")
 	
 	var current_speed := speed
 	if sprint and direction != 0:
@@ -87,11 +87,12 @@ func _physics_process(delta):
 			velocity.x = wall_jumps_remaining * get_wall_jump_direction()
 			wall_jumps_remaining -= 1
 			is_wall_sliding = false
+		animated_sprite.play("jump")
 	
-	if direction != 0:
+	if direction != 0 and not jump:
 		animated_sprite.play("walk")
 		animated_sprite.flip_h = direction > 0
-	else:
+	elif not jump:
 		animated_sprite.play("idle")
 	
 	if not is_grounded and not is_wall_sliding:
