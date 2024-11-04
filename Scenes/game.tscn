@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/parallax/buildings.png" id="2_hj71v"]
 [ext_resource type="Texture2D" uid="uid://brtmrgp2g0lcp" path="res://Assets/parallax/front.png" id="3_t0is6"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="5_ug22v"]
-[ext_resource type="Texture2D" uid="uid://diwkkh4cgil6d" path="res://Assets/CatNotStill.png" id="6_4np5s"]
 [ext_resource type="Texture2D" uid="uid://o70kvw6rfk1x" path="res://Assets/CatIdle.png" id="6_62buh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3frx"]
@@ -48,12 +47,15 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("6_62buh")
 region = Rect2(32, 0, 32, 32)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rjp2v"]
+load_path = "res://.godot/imported/CatNotStill.png-3ed259df8a6ee11ca3bab09c1e9f69a4.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_54agk"]
-atlas = ExtResource("6_4np5s")
+atlas = SubResource("CompressedTexture2D_rjp2v")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7b63n"]
-atlas = ExtResource("6_4np5s")
+atlas = SubResource("CompressedTexture2D_rjp2v")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r7t5s"]
