@@ -1,22 +1,22 @@
-[gd_scene load_steps=17 format=4 uid="uid://c1ifcmjlefw85"]
+[gd_scene load_steps=41 format=4 uid="uid://c1ifcmjlefw85"]
 
-[ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/Parallax/back.png" id="1_sn3yr"]
-[ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/Parallax/buildings.png" id="2_hj71v"]
-[ext_resource type="Texture2D" uid="uid://brtmrgp2g0lcp" path="res://Assets/Parallax/front.png" id="3_t0is6"]
-[ext_resource type="Texture2D" uid="uid://cxr7dbsj16hx8" path="res://Assets/TileSheets/tilesheet4x4streetsV3.png" id="4_yhlml"]
-[ext_resource type="Texture2D" uid="uid://do3hq8xipcq36" path="res://Assets/TileSheets/2tilesheet4x4streetsV1.png" id="5_8euk6"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="5_ug22v"]
-[ext_resource type="Script" path="res://Scripts/Managers/UIManager.gd" id="6_3fp76"]
-[ext_resource type="Texture2D" uid="uid://dmhscgdjn8j2t" path="res://Assets/PlayerSprites/CatNotStill.png" id="6_4np5s"]
-[ext_resource type="Texture2D" uid="uid://o70kvw6rfk1x" path="res://Assets/PlayerSprites/CatIdle.png" id="6_62buh"]
-[ext_resource type="Texture2D" uid="uid://dviccwueujdal" path="res://Assets/PlayerSprites/CatJump.png" id="7_uo13r"]
-[ext_resource type="Texture2D" uid="uid://baytxmioo8hnj" path="res://Assets/PlayerSprites/CatIdleCrouch.png" id="8_hwj3d"]
-[ext_resource type="Texture2D" uid="uid://dw5xnpw8umfpk" path="res://Assets/UIButtons/PauseButtonRedo.png" id="6_486qy"]
-[ext_resource type="Script" path="res://Scripts/Managers/SettingManager.gd" id="8_0avs6"]
-[ext_resource type="Material" uid="uid://b8rntfto8sibn" path="res://Assets/shaders/blur.tres" id="9_kdeoh"]
+[ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/parallax/back.png" id="1_ad65e"]
+[ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/parallax/buildings.png" id="2_rnrw4"]
+[ext_resource type="Texture2D" uid="uid://brtmrgp2g0lcp" path="res://Assets/parallax/front.png" id="3_0mbvj"]
+[ext_resource type="Texture2D" uid="uid://cxr7dbsj16hx8" path="res://Assets/TileSheets/tilesheet4x4streetsV3.png" id="4_yie53"]
+[ext_resource type="Texture2D" uid="uid://do3hq8xipcq36" path="res://Assets/TileSheets/2tilesheet4x4streetsV1.png" id="5_pynpt"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="6_2yq71"]
+[ext_resource type="Script" path="res://Scripts/Managers/UIManager.gd" id="7_enm2e"]
+[ext_resource type="Texture2D" uid="uid://dw5xnpw8umfpk" path="res://Assets/UIButtons/PauseButtonRedo.png" id="8_dud1w"]
+[ext_resource type="Script" path="res://Scripts/Managers/SettingManager.gd" id="9_rvms2"]
+[ext_resource type="Material" uid="uid://b8rntfto8sibn" path="res://Assets/shaders/blur.tres" id="10_q5u3a"]
+[ext_resource type="Texture2D" uid="uid://o70kvw6rfk1x" path="res://Assets/PlayerSprites/CatIdle.png" id="11_uy3kp"]
+[ext_resource type="Texture2D" uid="uid://dviccwueujdal" path="res://Assets/PlayerSprites/CatJump.png" id="12_mw7s0"]
+[ext_resource type="Texture2D" uid="uid://baytxmioo8hnj" path="res://Assets/PlayerSprites/CatIdleCrouch.png" id="13_rxp7i"]
+[ext_resource type="Texture2D" uid="uid://dmhscgdjn8j2t" path="res://Assets/PlayerSprites/CatNotStill.png" id="14_iwr6a"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3frx"]
-texture = ExtResource("1_tq8xh")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_376ax"]
+texture = ExtResource("4_yie53")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -54,7 +54,7 @@ texture_region_size = Vector2i(32, 32)
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rorw2"]
-texture = ExtResource("5_8euk6")
+texture = ExtResource("5_pynpt")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -0.625, -16, -0.625)
@@ -92,69 +92,70 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_s6elk"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_l3frx")
+sources/0 = SubResource("TileSetAtlasSource_376ax")
+sources/1 = SubResource("TileSetAtlasSource_rorw2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6lme"]
 size = Vector2(28, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1rjv"]
-atlas = ExtResource("6_62buh")
+atlas = ExtResource("11_uy3kp")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_luux6"]
-atlas = ExtResource("6_62buh")
+atlas = ExtResource("11_uy3kp")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p434g"]
-atlas = ExtResource("7_uo13r")
+atlas = ExtResource("12_mw7s0")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xuoy4"]
-atlas = ExtResource("7_uo13r")
+atlas = ExtResource("12_mw7s0")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_276aq"]
-atlas = ExtResource("7_uo13r")
+atlas = ExtResource("12_mw7s0")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4riy"]
-atlas = ExtResource("7_uo13r")
+atlas = ExtResource("12_mw7s0")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mdm0g"]
-atlas = ExtResource("7_uo13r")
+atlas = ExtResource("12_mw7s0")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fs5ow"]
-atlas = ExtResource("7_uo13r")
+atlas = ExtResource("12_mw7s0")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eix4"]
-atlas = ExtResource("7_uo13r")
+atlas = ExtResource("12_mw7s0")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ybr5"]
-atlas = ExtResource("7_uo13r")
+atlas = ExtResource("12_mw7s0")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6a32"]
-atlas = ExtResource("7_uo13r")
+atlas = ExtResource("12_mw7s0")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fiph6"]
-atlas = ExtResource("8_hwj3d")
+atlas = ExtResource("13_rxp7i")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7fw8"]
-atlas = ExtResource("8_hwj3d")
+atlas = ExtResource("13_rxp7i")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_54agk"]
-atlas = ExtResource("6_4np5s")
+atlas = ExtResource("14_iwr6a")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7b63n"]
-atlas = ExtResource("6_4np5s")
+atlas = ExtResource("14_iwr6a")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r7t5s"]
@@ -225,6 +226,33 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SystemFont" id="SystemFont_2ckkm"]
+font_names = PackedStringArray("")
+font_weight = 900
+oversampling = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_b723l"]
+font = SubResource("SystemFont_2ckkm")
+font_size = 15
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_7ray1"]
+font_names = PackedStringArray("")
+font_weight = 900
+oversampling = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_rf4my"]
+font = SubResource("SystemFont_7ray1")
+font_size = 15
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_lhw7a"]
+font_names = PackedStringArray("")
+font_weight = 700
+oversampling = 3.0
+
 [sub_resource type="Environment" id="Environment_x2mid"]
 background_mode = 1
 background_color = Color(0.156863, 0.113725, 0.317647, 1)
@@ -240,7 +268,7 @@ motion_mirroring = Vector2(864, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 scale = Vector2(3, 3)
-texture = ExtResource("1_sn3yr")
+texture = ExtResource("1_ad65e")
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -250,7 +278,7 @@ motion_mirroring = Vector2(864, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 scale = Vector2(3, 3)
-texture = ExtResource("2_hj71v")
+texture = ExtResource("2_rnrw4")
 centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -260,7 +288,7 @@ motion_mirroring = Vector2(864, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 scale = Vector2(3, 3)
-texture = ExtResource("3_t0is6")
+texture = ExtResource("3_0mbvj")
 centered = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -270,56 +298,66 @@ tile_set = SubResource("TileSet_s6elk")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(234, 337)
-script = ExtResource("5_ug22v")
+script = ExtResource("6_2yq71")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -50)
 
-[node name="OverlayUIControl" type="Control" parent="Player/Camera2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_g6lme")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(-1, 8)
+sprite_frames = SubResource("SpriteFrames_r7t5s")
+animation = &"jump"
+
+[node name="OverlayUIControl" type="Control" parent="Player"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -321.0
-offset_top = -178.0
-offset_right = 320.0
-offset_bottom = 181.0
-script = ExtResource("6_3fp76")
+offset_left = -256.0
+offset_top = -194.0
+offset_right = 257.0
+offset_bottom = 93.0
+script = ExtResource("7_enm2e")
 
-[node name="ButtonMarginContainer" type="MarginContainer" parent="Player/Camera2D/OverlayUIControl"]
+[node name="ButtonMarginContainer" type="MarginContainer" parent="Player/OverlayUIControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 585.0
-offset_top = 5.0
+offset_left = 482.0
+offset_top = 4.0
 offset_right = -6.0
-offset_bottom = -304.0
+offset_bottom = -259.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PauseButton" type="Button" parent="Player/Camera2D/OverlayUIControl/ButtonMarginContainer"]
+[node name="PauseButton" type="Button" parent="Player/OverlayUIControl/ButtonMarginContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Player/Camera2D/OverlayUIControl/ButtonMarginContainer/PauseButton"]
+[node name="TextureRect" type="TextureRect" parent="Player/OverlayUIControl/ButtonMarginContainer/PauseButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_486qy")
+texture = ExtResource("8_dud1w")
 expand_mode = 1
 
-[node name="OptionsControl" type="Control" parent="Player/Camera2D/OverlayUIControl"]
+[node name="OptionsControl" type="Control" parent="Player/OverlayUIControl"]
 process_mode = 2
-layout_mode = 3
-anchors_preset = 0
-offset_top = -2.0
-offset_right = 641.0
-offset_bottom = 360.0
-script = ExtResource("8_0avs6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_rvms2")
 
-[node name="BlurColorRect" type="ColorRect" parent="Player/Camera2D/OverlayUIControl/OptionsControl"]
-material = ExtResource("9_kdeoh")
+[node name="BlurColorRect" type="ColorRect" parent="Player/OverlayUIControl/OptionsControl"]
+material = ExtResource("10_q5u3a")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -327,7 +365,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionsBackground" type="TextureRect" parent="Player/Camera2D/OverlayUIControl/OptionsControl"]
+[node name="OptionsBackground" type="TextureRect" parent="Player/OverlayUIControl/OptionsControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -339,84 +377,75 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground"]
+[node name="MarginContainer" type="MarginContainer" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -124.0
+offset_left = -135.0
 offset_top = 2.0
-offset_right = 140.0
-offset_bottom = 357.0
+offset_right = 151.0
+offset_bottom = 356.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 14
 
-[node name="OptionsLabel" type="Label" parent="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
+[node name="OptionsLabel" type="Label" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Options Menu"
-label_settings = SubResource("LabelSettings_7u4d2")
+label_settings = SubResource("LabelSettings_b723l")
 
-[node name="MusicLabel" type="Label" parent="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
+[node name="MusicLabel" type="Label" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Music Volume"
-label_settings = SubResource("LabelSettings_6x5ly")
+label_settings = SubResource("LabelSettings_rf4my")
 
-[node name="MusicHSlider" type="HSlider" parent="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
+[node name="MusicHSlider" type="HSlider" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="GameSoundLabel" type="Label" parent="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
+[node name="GameSoundLabel" type="Label" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Sound Volume"
-label_settings = SubResource("LabelSettings_6x5ly")
+label_settings = SubResource("LabelSettings_rf4my")
 
-[node name="GameSoundHSlider" type="HSlider" parent="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
+[node name="GameSoundHSlider" type="HSlider" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = SubResource("SystemFont_lide2")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = SubResource("SystemFont_lhw7a")
+theme_override_font_sizes/font_size = 15
 text = "Exit Options"
 
-[node name="ExitButton" type="Button" parent="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = SubResource("SystemFont_lide2")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = SubResource("SystemFont_lhw7a")
+theme_override_font_sizes/font_size = 15
 text = "Exit Game"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 11)
-shape = SubResource("RectangleShape2D_g6lme")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(-1, 8)
-sprite_frames = SubResource("SpriteFrames_r7t5s")
-animation = &"jump"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x2mid")
 
-[connection signal="pressed" from="Player/Camera2D/OverlayUIControl/ButtonMarginContainer/PauseButton" to="Player/Camera2D/OverlayUIControl" method="_Pause"]
-[connection signal="drag_ended" from="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/MusicHSlider" to="Player/Camera2D/OverlayUIControl/OptionsControl" method="_on_music_h_slider_drag_ended"]
-[connection signal="value_changed" from="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/MusicHSlider" to="Player/Camera2D/OverlayUIControl/OptionsControl" method="_on_music_h_slider_value_changed"]
-[connection signal="drag_ended" from="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/GameSoundHSlider" to="Player/Camera2D/OverlayUIControl/OptionsControl" method="_on_game_sound_h_slider_drag_ended"]
-[connection signal="value_changed" from="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/GameSoundHSlider" to="Player/Camera2D/OverlayUIControl/OptionsControl" method="_on_game_sound_h_slider_value_changed"]
-[connection signal="pressed" from="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/BackButton" to="Player/Camera2D/OverlayUIControl" method="_Unpause"]
-[connection signal="pressed" from="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/BackButton" to="Player/Camera2D/OverlayUIControl/OptionsControl" method="_on_back_button_pressed"]
-[connection signal="pressed" from="Player/Camera2D/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/ExitButton" to="Player/Camera2D/OverlayUIControl/OptionsControl" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Player/OverlayUIControl/ButtonMarginContainer/PauseButton" to="Player/OverlayUIControl" method="_Pause"]
+[connection signal="drag_ended" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/MusicHSlider" to="Player/OverlayUIControl/OptionsControl" method="_on_music_h_slider_drag_ended"]
+[connection signal="value_changed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/MusicHSlider" to="Player/OverlayUIControl/OptionsControl" method="_on_music_h_slider_value_changed"]
+[connection signal="drag_ended" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/GameSoundHSlider" to="Player/OverlayUIControl/OptionsControl" method="_on_game_sound_h_slider_drag_ended"]
+[connection signal="value_changed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/GameSoundHSlider" to="Player/OverlayUIControl/OptionsControl" method="_on_game_sound_h_slider_value_changed"]
+[connection signal="pressed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/BackButton" to="Player/OverlayUIControl" method="_Unpause"]
+[connection signal="pressed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/BackButton" to="Player/OverlayUIControl/OptionsControl" method="_on_back_button_pressed"]
+[connection signal="pressed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/VBoxContainer/ExitButton" to="Player/OverlayUIControl/OptionsControl" method="_on_exit_button_pressed"]
