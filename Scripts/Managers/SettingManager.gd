@@ -15,6 +15,9 @@ signal sound_signal(arg : int)
 #Look into Audio buses for updating volume with sliders 
 #Figure out button fonts and fonts for this Menu in general
 #Continue UI Overlay migration      
+#Create volume func for calulating DB values to send to audio manager functions
+#LinearToDB math function (Godot doc!)
+#Merge audio manager into this branch
 
 func _ready():
 	# load_settings()
