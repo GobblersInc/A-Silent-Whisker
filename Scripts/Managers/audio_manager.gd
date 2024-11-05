@@ -1,6 +1,5 @@
 extends Node
 
-
 func _ready():
 	randomize()
 	setup_audio_players()
