@@ -1,78 +1,94 @@
 extends Node
 
+var audio_definitions: Dictionary = {}
+var player_pool: Array = []
+
+var path_to_audio_definitions: String = "res://Resources/Configurations/audio_definitions.json"
+const POOL_SIZE: int = 10  # Define the initial size of the player pool
 
 func _ready():
-	randomize()
-	setup_audio_players()
-	
-var audio_cache = {}
+	load_audio_definitions(path_to_audio_definitions)
+	initialize_player_pool(POOL_SIZE)
 
-func get_or_load_audio(name: String, path: String):
-	if not audio_cache.has(name):
-		audio_cache[name] = load(path)
-	return audio_cache[name]
+# Initialize a pool of AudioStreamPlayers
+func initialize_player_pool(size: int):
+	for i in range(size):
+		var player = AudioStreamPlayer.new()
+		add_child(player)
+		player.stop()  # Ensure player is in a stopped state
+		player_pool.append(player)
 
-# Audio data
-var audio_definitions = {
-	"TestMusic": AudioDefinition.new(Busses.MASTER, Groups.TEST_1)
-	#"TestSFX": {"bus": "SFX", "group": "TestGroup1"},
-	#"TestWeather": {"bus": "Weather", "group": "TestGroup1"}
-}
-
-# Preload audio files; can be altered/disabled if it causes performance degradation.
-var preload_audio = {
-	"TestMusic": preload("res://Assets/Audio/Music/TestMusic.ogg")
-	#"TestSFX": preload("res://Assets/Audio/SFX/TestAudioSFX.wav"),
-	#"TestWeather": preload("res://Assets/Audio/Weather/TestAudioWeather.ogg")
-}
-
-# Dictionary to store audio players
-var audio_players = {}
-
-# Create and configure each AudioStreamPlayer
-func setup_audio_players():
-	for audio_key in audio_definitions.keys():
-		var audio_player = AudioStreamPlayer.new()
-		audio_player.stream = preload_audio[audio_key]
-		audio_player.bus = audio_definitions[audio_key].bus
-		add_child(audio_player)
-		audio_players[audio_key] = audio_player
-
-# Start playing a specific audio
-func play_audio(audio_key):
-	if audio_key in audio_players:
-		audio_players[audio_key].play()
-
-# Stop specific audio or all audio if no key is provided
-func stop_audio(audio_key: String = ""):
-	if audio_key == "":
-		# Stop all audio players
-		for player in audio_players.values():
-			player.stop()
-	elif audio_key in audio_players:
-		# Stop the specific audio
-		audio_players[audio_key].stop()
-
-# Adjust the volume on a specific bus if needed
-func set_bus_volume(bus_name, volume_db):
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), volume_db)
-
-# Returns a list of audio keys that belong to a given group
-func get_sounds_by_group(group_name: String) -> Array:
-	var sounds_in_group = []
-	for audio_key in audio_definitions.keys():
-		if audio_definitions[audio_key]["group"] == group_name:
-			sounds_in_group.append(audio_key)
-	return sounds_in_group
-
-# Plays a random sound from a specified group
-func play_random_sound_from_group(group_name: String):
-	var sounds_in_group = get_sounds_by_group(group_name)
-	if sounds_in_group.size() > 0:
-		# Pick a random sound key from the list
-		var random_index = randi() % sounds_in_group.size()
-		var random_sound_key = sounds_in_group[random_index]
-		# Play the sound
-		play_audio(random_sound_key)
+# Load definitions from JSON
+func load_audio_definitions(file_path: String):
+	var file: FileAccess = FileAccess.open(file_path, FileAccess.READ)
+	if file:
+		var json: JSON = JSON.new()
+		var parse_result = json.parse(file.get_as_text())
+		if parse_result == OK:
+			var data: Dictionary = json.data
+			for name in data["audio_files"]:
+				var details: Dictionary = data["audio_files"][name]
+				var audio_def: AudioDefinition = AudioDefinition.new(details["bus"], details["group"], details["path"])
+				audio_definitions[name] = audio_def
+		else:
+			push_error("Failed to parse JSON: %s" % parse_result.error_string)
 	else:
-		print("The group does not exist. This is a dev message.")
+		push_error("Failed to load audio definitions from file: %s" % file_path)
+
+# Get or load sound using AudioDefinition
+func get_audio_definition(name: String) -> AudioDefinition:
+	return audio_definitions.get(name, null)
+
+# Get an available AudioStreamPlayer from the pool or create a new one
+func get_audio_player() -> AudioStreamPlayer:
+	if player_pool.size() > 0:
+		return player_pool.pop_back()
+	else:
+		var player = AudioStreamPlayer.new()
+		add_child(player)
+		return player
+
+# Return an AudioStreamPlayer to the pool
+func release_audio_player(player: AudioStreamPlayer):
+	player.stop()
+	player.stream = null  # Clear the stream to avoid memory leaks
+	if not player_pool.has(player):
+		player_pool.append(player)
+
+# Play sound by name
+func play_sound(name: String) -> AudioStreamPlayer:
+	var audio_def: AudioDefinition = get_audio_definition(name)
+	if audio_def:
+		var player: AudioStreamPlayer = get_audio_player()
+		player.stream = audio_def.get_stream()
+		player.bus = audio_def.bus
+		player.finished.connect(_on_player_finished)
+		player.play()
+		return player
+	push_error("Audio not found: %s" % name)
+	return null
+
+# Handle player finishing and return it to the pool
+func _on_player_finished(player: AudioStreamPlayer):
+	player.finished.disconnect(_on_player_finished)
+	release_audio_player(player)
+
+# Stop and free a sound
+func stop_sound(player: AudioStreamPlayer):
+	if player:
+		player.stop()
+		release_audio_player(player)
+
+# Set bus volume
+func set_bus_volume(bus_name: String, volume: float):
+	var bus_index: int = AudioServer.get_bus_index(bus_name)
+	if bus_index >= 0:
+		AudioServer.set_bus_volume_db(bus_index, linear_to_db(volume))
+	else:
+		push_error("Bus not found: %s" % bus_name)
+
+# Example of a convenient function to stop all sounds
+func stop_all_sounds():
+	for child in get_children():
+		if child is AudioStreamPlayer:
+			stop_sound(child)

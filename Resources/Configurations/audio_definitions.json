@@ -1,7 +1,7 @@
 {
   "audio_files": {
 	"TestMusic": {
-	  "bus": "MASTER",
+	  "bus": "Master",
 	  "group": "TEST_1",
 	  "path": "res://Assets/Audio/Music/TestMusic.ogg"
 	}

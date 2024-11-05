@@ -1,11 +1,22 @@
-extends Object
+extends RefCounted
 
 class_name AudioDefinition
 
 var bus: String
-var group: int
+var group: String
+var path: String
+var stream: AudioStream = null
 
-# Constructor to initialize bus and group
-func _init(bus: String = "", group: int = 0):
+func _init(bus: String, group: String, path: String):
 	self.bus = bus
 	self.group = group
+	self.path = path
+
+func load_stream():
+	if stream == null:
+		stream = load(path)
+
+func get_stream() -> AudioStream:
+	if stream == null:
+		load_stream()
+	return stream
