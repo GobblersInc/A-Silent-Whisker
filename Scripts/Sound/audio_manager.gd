@@ -4,10 +4,17 @@ extends Node
 func _ready():
 	randomize()
 	setup_audio_players()
+	
+var audio_cache = {}
+
+func get_or_load_audio(name: String, path: String):
+	if not audio_cache.has(name):
+		audio_cache[name] = load(path)
+	return audio_cache[name]
 
 # Audio data
 var audio_definitions = {
-	"TestMusic": {"bus": "Music", "group": "TestGroup1"}
+	"TestMusic": AudioDefinition.new(Busses.MASTER, Groups.TEST_1)
 	#"TestSFX": {"bus": "SFX", "group": "TestGroup1"},
 	#"TestWeather": {"bus": "Weather", "group": "TestGroup1"}
 }
@@ -27,7 +34,7 @@ func setup_audio_players():
 	for audio_key in audio_definitions.keys():
 		var audio_player = AudioStreamPlayer.new()
 		audio_player.stream = preload_audio[audio_key]
-		audio_player.bus = audio_definitions[audio_key]["bus"]
+		audio_player.bus = audio_definitions[audio_key].bus
 		add_child(audio_player)
 		audio_players[audio_key] = audio_player
 
