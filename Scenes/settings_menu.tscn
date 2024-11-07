@@ -1,0 +1,152 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcrgwocfvktqp"]
+
+[ext_resource type="Script" path="res://Scripts/Managers/settings_manager.gd" id="1_3yoab"]
+
+[sub_resource type="SystemFont" id="SystemFont_2ckkm"]
+font_names = PackedStringArray("")
+font_weight = 900
+subpixel_positioning = 0
+oversampling = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_hqb5k"]
+font = SubResource("SystemFont_2ckkm")
+font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_7ray1"]
+font_names = PackedStringArray("")
+font_weight = 900
+subpixel_positioning = 0
+oversampling = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ron0"]
+font = SubResource("SystemFont_7ray1")
+font_size = 15
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_2g00s"]
+font_names = PackedStringArray("")
+font_weight = 700
+subpixel_positioning = 0
+oversampling = 3.0
+
+[node name="SettingsMenu" type="Node2D"]
+
+[node name="SettingsControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3yoab")
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsBackground" type="TextureRect" parent="SettingsControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 211.0
+offset_top = -1.0
+offset_right = -203.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsControl/SettingsBackground"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 509.0
+offset_bottom = 311.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="SettingsLabel" type="Label" parent="SettingsControl/SettingsBackground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Options Menu"
+label_settings = SubResource("LabelSettings_hqb5k")
+
+[node name="SVBoxContainer" type="VBoxContainer" parent="SettingsControl/SettingsBackground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 14
+
+[node name="MasterLabel" type="Label" parent="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Master"
+label_settings = SubResource("LabelSettings_5ron0")
+
+[node name="MasterHSlider" type="HSlider" parent="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Music"
+label_settings = SubResource("LabelSettings_5ron0")
+
+[node name="MusicHSlider" type="HSlider" parent="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+
+[node name="SfxLabel" type="Label" parent="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SFX"
+label_settings = SubResource("LabelSettings_5ron0")
+
+[node name="SfxHSlider" type="HSlider" parent="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+
+[node name="WeatherLabel" type="Label" parent="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Weather"
+label_settings = SubResource("LabelSettings_5ron0")
+
+[node name="WeatherHSlider" type="HSlider" parent="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+
+[node name="BVBoxContainer" type="VBoxContainer" parent="SettingsControl/SettingsBackground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+
+[node name="BackButton" type="Button" parent="SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_2g00s")
+theme_override_font_sizes/font_size = 15
+text = "Exit Options"
+
+[node name="ExitButton" type="Button" parent="SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_2g00s")
+theme_override_font_sizes/font_size = 15
+text = "Exit Game"
+
+[connection signal="value_changed" from="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MasterHSlider" to="SettingsControl" method="_on_master_h_slider_value_changed"]
+[connection signal="drag_ended" from="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="SettingsControl" method="_on_music_h_slider_drag_ended"]
+[connection signal="value_changed" from="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="SettingsControl" method="_on_music_h_slider_value_changed"]
+[connection signal="value_changed" from="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/SfxHSlider" to="SettingsControl" method="_on_sfx_h_slider_value_changed"]
+[connection signal="value_changed" from="SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/WeatherHSlider" to="SettingsControl" method="_on_weather_h_slider_value_changed"]
+[connection signal="pressed" from="SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="SettingsControl" method="_on_main_back_pressed"]
+[connection signal="pressed" from="SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/ExitButton" to="SettingsControl" method="_on_exit_button_pressed"]
