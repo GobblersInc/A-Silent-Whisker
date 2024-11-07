@@ -13,5 +13,5 @@ func _on_options_button_pressed():
 
 
 #Test main menu audio
-#func _ready():
-#	audio_manager.play_audio("TestMusic")
+func _ready():
+	audio_manager.play_sound("TestMusic")
