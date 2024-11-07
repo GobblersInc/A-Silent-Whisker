@@ -8,7 +8,7 @@ var left_pressed = false
 var right_pressed = false
 var last_direction_pressed = 0
 
-@export var wall_slide_speed := 100
+var wall_slide_speed := 100
 @export var wall_jump_force := Vector2(300, -400)
 @export var max_wall_jumps := 1
 var wall_jumps_remaining := max_wall_jumps
@@ -18,6 +18,29 @@ var is_wall_sliding := false
 var coyote_time_remaining := 0.0
 
 @onready var animated_sprite := $AnimatedSprite2D
+
+
+# Setting up player states
+var idle_ps := PlayerState.new(0, 0, 0, "idle")
+
+var jump_ps := PlayerState.new(0, 0, -100, "jump")
+var fall_ps := PlayerState.new(0, 0, 100, "fall")
+var wall_slide_ps := PlayerState.new(0, 0, wall_slide_speed, "wall_slide")
+
+var left_walk_ps := PlayerState.new(-1, 100, 0, "walk")
+var left_sprint_ps := PlayerState.new(-1, 100, 0, "walk")
+var left_sneak_ps := PlayerState.new
+var right_walk_ps := PlayerState.new
+var right_sprint_ps := PlayerState.new
+var right_sneak_ps := PlayerState.new
+
+
+
+
+
+
+
+
 
 func _ready():
 	animated_sprite.play("idle")

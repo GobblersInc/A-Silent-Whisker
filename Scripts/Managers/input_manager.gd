@@ -1,12 +1,12 @@
 extends Object
 
 # list of input types and their category 
-var movement = ["move_up", "move_down", "move_left", "move_right", "move_fast"]
-var pause = "pause"
+
+signal Movement()
 
 func _input(event: InputEvent) -> void:
-	if 
-	
+	if Input.is_action_pressed("move_down") or Input.is_action_pressed("move_fast") or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") or Input.is_action_pressed("move_up"):
+		Movement.emit()
 	
 #input manager
 #
