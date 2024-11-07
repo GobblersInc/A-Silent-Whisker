@@ -1,4 +1,4 @@
-extends Object
+extends Node
 
 # list of input types and their category 
 

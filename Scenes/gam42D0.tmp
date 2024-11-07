@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://c1ifcmjlefw85"]
+[gd_scene load_steps=37 format=4 uid="uid://c1ifcmjlefw85"]
 
 [ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/Parallax/back.png" id="1_sn3yr"]
 [ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/Parallax/buildings.png" id="2_hj71v"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="5_ug22v"]
 [ext_resource type="Texture2D" uid="uid://dmhscgdjn8j2t" path="res://Assets/PlayerSprites/CatNotStill.png" id="6_4np5s"]
 [ext_resource type="Texture2D" uid="uid://c4r37oe13yc76" path="res://Assets/PlayerSprites/CatStill.png" id="6_5g6uy"]
-[ext_resource type="Texture2D" uid="uid://dr0coeuln21d3" path="res://Assets/PlayerSprites/CatGoingDown.png" id="6_ertcw"]
 [ext_resource type="Texture2D" uid="uid://dviccwueujdal" path="res://Assets/PlayerSprites/CatJump.png" id="7_uo13r"]
 [ext_resource type="Texture2D" uid="uid://dwhx8sy4teooy" path="res://Assets/PlayerSprites/CatCrouchWalk.png" id="8_r12sh"]
 [ext_resource type="Texture2D" uid="uid://r7wcomboirdm" path="res://Assets/PlayerSprites/CatRun.png" id="9_0cud6"]
@@ -195,26 +194,6 @@ sources/2 = SubResource("TileSetAtlasSource_rnfrn")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6lme"]
 size = Vector2(28, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptxhj"]
-atlas = ExtResource("6_ertcw")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8afh8"]
-atlas = ExtResource("6_ertcw")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ortt4"]
-atlas = ExtResource("6_ertcw")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wbeqn"]
-atlas = ExtResource("6_ertcw")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a35f5"]
-atlas = ExtResource("6_ertcw")
-region = Rect2(128, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_p434g"]
 atlas = ExtResource("7_uo13r")
 region = Rect2(0, 0, 32, 32)
@@ -297,26 +276,6 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r7t5s"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ptxhj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8afh8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ortt4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wbeqn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a35f5")
-}],
-"loop": true,
-"name": &"fall",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("6_5g6uy")
@@ -471,7 +430,7 @@ shape = SubResource("RectangleShape2D_g6lme")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(-1, 8)
 sprite_frames = SubResource("SpriteFrames_r7t5s")
-animation = &"fall"
+animation = &"idle"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x2mid")
