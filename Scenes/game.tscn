@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://baytxmioo8hnj" path="res://Assets/PlayerSprites/CatIdleCrouch.png" id="8_hwj3d"]
 [ext_resource type="Script" path="res://Scripts/Managers/ui_manager.gd" id="11_82m58"]
 [ext_resource type="Texture2D" uid="uid://dw5xnpw8umfpk" path="res://Assets/UIButtons/PauseButtonRedo.png" id="12_8ymk0"]
-[ext_resource type="Script" path="res://Scripts/Managers/options_manager.gd" id="13_o43nh"]
+[ext_resource type="Script" path="res://Scripts/Managers/settings_manager.gd" id="13_o43nh"]
 [ext_resource type="Material" uid="uid://b8rntfto8sibn" path="res://Assets/shaders/blur.tres" id="14_pd2sw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_376ax"]
@@ -349,7 +349,7 @@ grow_vertical = 2
 texture = ExtResource("12_8ymk0")
 expand_mode = 1
 
-[node name="OptionsControl" type="Control" parent="Player/OverlayUIControl"]
+[node name="SettingsControl" type="Control" parent="Player/OverlayUIControl"]
 process_mode = 2
 layout_mode = 1
 anchors_preset = 15
@@ -360,7 +360,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("13_o43nh")
 
-[node name="BlurColorRect" type="ColorRect" parent="Player/OverlayUIControl/OptionsControl"]
+[node name="BlurColorRect" type="ColorRect" parent="Player/OverlayUIControl/SettingsControl"]
 material = ExtResource("14_pd2sw")
 layout_mode = 1
 anchors_preset = 15
@@ -370,7 +370,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionsBackground" type="TextureRect" parent="Player/OverlayUIControl/OptionsControl"]
+[node name="SettingsBackground" type="TextureRect" parent="Player/OverlayUIControl/SettingsControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -382,7 +382,7 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground"]
+[node name="MarginContainer" type="MarginContainer" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -397,62 +397,62 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="OptionsLabel" type="Label" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer"]
+[node name="SettingsLabel" type="Label" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Options Menu"
 label_settings = SubResource("LabelSettings_6wx77")
 
-[node name="SVBoxContainer" type="VBoxContainer" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer"]
+[node name="SVBoxContainer" type="VBoxContainer" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 14
 
-[node name="MasterLabel" type="Label" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer"]
+[node name="MasterLabel" type="Label" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Master"
 label_settings = SubResource("LabelSettings_vbvtj")
 
-[node name="MasterHSlider" type="HSlider" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer"]
+[node name="MasterHSlider" type="HSlider" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
 layout_mode = 2
 
-[node name="MusicLabel" type="Label" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer"]
+[node name="MusicLabel" type="Label" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Music"
 label_settings = SubResource("LabelSettings_vbvtj")
 
-[node name="MusicHSlider" type="HSlider" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer"]
+[node name="MusicHSlider" type="HSlider" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
 layout_mode = 2
 
-[node name="SfxLabel" type="Label" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer"]
+[node name="SfxLabel" type="Label" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "SFX"
 label_settings = SubResource("LabelSettings_vbvtj")
 
-[node name="SfxHSlider" type="HSlider" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer"]
+[node name="SfxHSlider" type="HSlider" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
 layout_mode = 2
 
-[node name="WeatherLabel" type="Label" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer"]
+[node name="WeatherLabel" type="Label" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Weather"
 label_settings = SubResource("LabelSettings_vbvtj")
 
-[node name="WeatherHSlider" type="HSlider" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer"]
+[node name="WeatherHSlider" type="HSlider" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
 layout_mode = 2
 
-[node name="BVBoxContainer" type="VBoxContainer" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer"]
+[node name="BVBoxContainer" type="VBoxContainer" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_constants/separation = 14
 
-[node name="BackButton" type="Button" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/BVBoxContainer"]
+[node name="BackButton" type="Button" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -460,7 +460,7 @@ theme_override_fonts/font = SubResource("SystemFont_g41ag")
 theme_override_font_sizes/font_size = 15
 text = "Exit Options"
 
-[node name="ExitButton" type="Button" parent="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/BVBoxContainer"]
+[node name="ExitButton" type="Button" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -472,11 +472,11 @@ text = "Exit Game"
 environment = SubResource("Environment_x2mid")
 
 [connection signal="pressed" from="Player/OverlayUIControl/ButtonMarginContainer/PauseButton" to="Player/OverlayUIControl" method="_Pause"]
-[connection signal="value_changed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer/MasterHSlider" to="Player/OverlayUIControl/OptionsControl" method="_on_master_h_slider_value_changed"]
-[connection signal="drag_ended" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/OptionsControl" method="_on_music_h_slider_drag_ended"]
-[connection signal="value_changed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/OptionsControl" method="_on_music_h_slider_value_changed"]
-[connection signal="value_changed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer/SfxHSlider" to="Player/OverlayUIControl/OptionsControl" method="_on_sfx_h_slider_value_changed"]
-[connection signal="value_changed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/SVBoxContainer/WeatherHSlider" to="Player/OverlayUIControl/OptionsControl" method="_on_weather_h_slider_value_changed"]
-[connection signal="pressed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl" method="_Unpause"]
-[connection signal="pressed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl/OptionsControl" method="_on_back_button_pressed"]
-[connection signal="pressed" from="Player/OverlayUIControl/OptionsControl/OptionsBackground/MarginContainer/BVBoxContainer/ExitButton" to="Player/OverlayUIControl/OptionsControl" method="_on_exit_button_pressed"]
+[connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MasterHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_master_h_slider_value_changed"]
+[connection signal="drag_ended" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_music_h_slider_drag_ended"]
+[connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_music_h_slider_value_changed"]
+[connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/SfxHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_sfx_h_slider_value_changed"]
+[connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/WeatherHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_weather_h_slider_value_changed"]
+[connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl" method="_Unpause"]
+[connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl/SettingsControl" method="_on_back_button_pressed"]
+[connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/ExitButton" to="Player/OverlayUIControl/SettingsControl" method="_on_exit_button_pressed"]

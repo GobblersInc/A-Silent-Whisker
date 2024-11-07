@@ -1,12 +1,12 @@
 extends Control
 
-@onready var music_slider := $OptionsBackground/MarginContainer/SVBoxContainer/MusicHSlider
-@onready var sfx_slider := $OptionsBackground/MarginContainer/SVBoxContainer/SfxHSlider
-@onready var weather_slider := $OptionsBackground/MarginContainer/SVBoxContainer/WeatherHSlider
-@onready var master_slider := $OptionsBackground/MarginContainer/SVBoxContainer/MasterHSlider
+@onready var music_slider := $SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider
+@onready var sfx_slider := $SettingsBackground/MarginContainer/SVBoxContainer/SfxHSlider
+@onready var weather_slider := $SettingsBackground/MarginContainer/SVBoxContainer/WeatherHSlider
+@onready var master_slider := $SettingsBackground/MarginContainer/SVBoxContainer/MasterHSlider
 
-var option_config = ConfigFile.new()
-var config_path = "res://ProjectSettings/option_settings.cfg"
+var setting_config = ConfigFile.new()
+var config_path = "res://ProjectSettings/settings_config.cfg"
 var sound_section = "VOLUMES"
 
 # audio_player.process_mode = Node.PROCESS_MODE_ALWAYS

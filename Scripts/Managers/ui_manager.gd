@@ -1,17 +1,17 @@
 extends Control
 
-@onready var _OptionsScreen = $OptionsControl
+@onready var _SettingsScreen = $SettingsControl
 
 func _ready():
-	_OptionsScreen.hide()
+	_SettingsScreen.hide()
 
 func _Pause():
 	print("The Pause Button HAS BEEN PRESSED!!!")
 	get_tree().set_pause(true)
-	_OptionsScreen.show()
+	_SettingsScreen.show()
 	
 func _Unpause():
 	print("The Unpause Button HAS BEEN PRESSED!!!")
 	get_tree().set_pause(false) 
-	_OptionsScreen.hide()
+	_SettingsScreen.hide()
 	
