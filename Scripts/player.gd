@@ -25,8 +25,8 @@ var walk_speed := 100
 var sprint_speed := 200
 var sneak_speed := 45
 
-var jump_speed := -4000
-var fall_speed := 10 # aka gravity
+var jump_speed := -300
+var fall_speed := 980 # aka gravity
 var wall_slide_speed := 100
 
 var no_movement := 0
@@ -48,7 +48,7 @@ var right_sneak_ps := PlayerState.new(right, sneak_speed, no_movement, "sneak")
 
 
 
-func movement():
+func movement(delta):
 	var move_up = Input.is_action_just_pressed("move_up")
 	var move_down = Input.is_action_pressed("move_down")
 	var move_fast = Input.is_action_pressed("move_fast")
@@ -60,9 +60,13 @@ func movement():
 	elif is_on_floor():
 		do_movement(idle_ps)
 	if move_up:
-		do_vertical_movement(jump_ps)
+		velocity.y = jump_ps.vertical_speed
+		animated_sprite.play(jump_ps.animation)
+		animated_sprite.flip_h = look_direction > 0
 	elif !is_on_floor():
-		do_vertical_movement(fall_ps)
+		velocity.y += fall_ps.vertical_speed * delta
+		animated_sprite.play(fall_ps.animation)
+		animated_sprite.flip_h = look_direction > 0
 
 func _physics_process(delta):
 	var is_grounded := is_on_floor()
@@ -74,7 +78,11 @@ func _physics_process(delta):
 	else:
 		coyote_time_remaining -= delta
 	
-	movement()
+	movement(delta)
+	
+	# JUMPING LOGIC TODO
+	#TODO: NEED TO TRACK WHEN THE PLAYER IS IN THE AIR AND DEPENDING ON + or - VELOCITY PLAY Animation
+	#TODO: make a big priority tree on what takes what priority when certain things effect the player, like idle, falling, moving, etc
 	
 	is_wall_sliding = false
 	if is_touching_wall and not is_grounded and velocity.y > 0:
@@ -103,11 +111,7 @@ func do_movement(playerstate: PlayerState):
 	look_direction = playerstate.direction
 	if playerstate.animation != "idle":
 		animated_sprite.flip_h = playerstate.direction > 0
-
-func do_vertical_movement(playerstate: PlayerState):
-	velocity.y = playerstate.vertical_speed
-	animated_sprite.play(playerstate.animation)
-	animated_sprite.flip_h = look_direction > 0
+	
 
 func do_right_movement(move_fast, move_down):
 	if move_fast:

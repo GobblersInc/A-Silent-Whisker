@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://c1ifcmjlefw85"]
+[gd_scene load_steps=40 format=4 uid="uid://c1ifcmjlefw85"]
 
 [ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/Parallax/back.png" id="1_sn3yr"]
 [ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/Parallax/buildings.png" id="2_hj71v"]
@@ -195,23 +195,11 @@ sources/2 = SubResource("TileSetAtlasSource_rnfrn")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6lme"]
 size = Vector2(28, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptxhj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4n4b3"]
 atlas = ExtResource("6_ertcw")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8afh8"]
-atlas = ExtResource("6_ertcw")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ortt4"]
-atlas = ExtResource("6_ertcw")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wbeqn"]
-atlas = ExtResource("6_ertcw")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a35f5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vpt3"]
 atlas = ExtResource("6_ertcw")
 region = Rect2(128, 0, 32, 32)
 
@@ -299,23 +287,14 @@ region = Rect2(0, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ptxhj")
+"texture": SubResource("AtlasTexture_4n4b3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8afh8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ortt4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wbeqn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a35f5")
+"texture": SubResource("AtlasTexture_5vpt3")
 }],
-"loop": true,
+"loop": false,
 "name": &"fall",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
