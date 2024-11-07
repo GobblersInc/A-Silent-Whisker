@@ -22,11 +22,12 @@ func _ready():
 	sfx_slider.value = volumes["sfx"]
 	weather_slider.value = volumes["weather"]
 	master_slider.value = volumes["master"]
-		
+
+# Can only use values between 0.0 to 1.0 for linear value
+# Otherwise values past 1, will result in n*maximum volume limit (AKA: You going to blow out your ear drums)
 func convert_to_audio(slider, value):
 	var linear = value / 100
-	var db_volume = linear_to_db(linear)
-	audio_manager.set_bus_volume(slider, db_volume)
+	audio_manager.set_bus_volume(slider, linear)
 		
 func _on_back_button_pressed():
 	print("Back button pressed")
