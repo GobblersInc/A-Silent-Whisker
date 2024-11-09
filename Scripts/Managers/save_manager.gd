@@ -1,11 +1,19 @@
 extends Node
 
-# Add save abilities for character position so you can revert back to their previous place in the scene or location
-# Serializing dictionary to file
-# Binary Serialization (Appraoch to take)
-# https://docs.godotengine.org/en/stable/tutorials/io/saving_games.html
+@onready var _Player = $Player
 
-class_name Save
+func _ready():
+	pass # Replace with function body.
 
-func _init():
-	print("MY GOD A NEW SAVEEE!!!")
+func save_game():
+	# Need try catch to make sure there are no repeating save names
+	var new_name = "{randomid}".format({"randomid": str(randi_range(0, 1000))})
+	var nodes = _Player.get_property_list()
+	var new_path = "thisisatestpath"
+	
+	var new_save = Save.new(new_name, new_path, nodes)
+	
+	print("Game is being saved!")
+
+func load_game():
+	print("Loading previous game!")
