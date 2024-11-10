@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://c1ifcmjlefw85"]
+[gd_scene load_steps=40 format=4 uid="uid://c1ifcmjlefw85"]
 
 [ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/Parallax/back.png" id="1_sn3yr"]
 [ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/Parallax/buildings.png" id="2_hj71v"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://dviccwueujdal" path="res://Assets/PlayerSprites/CatJump.png" id="7_uo13r"]
 [ext_resource type="Texture2D" uid="uid://baytxmioo8hnj" path="res://Assets/PlayerSprites/CatIdleCrouch.png" id="8_hwj3d"]
 [ext_resource type="Script" path="res://Scripts/Managers/ui_manager.gd" id="11_82m58"]
-[ext_resource type="Texture2D" uid="uid://dw5xnpw8umfpk" path="res://Assets/UIButtons/PauseButtonRedo.png" id="12_8ymk0"]
 [ext_resource type="Script" path="res://Scripts/Managers/settings_manager.gd" id="13_o43nh"]
 [ext_resource type="Material" uid="uid://b8rntfto8sibn" path="res://Assets/shaders/blur.tres" id="14_pd2sw"]
 
@@ -316,6 +315,7 @@ sprite_frames = SubResource("SpriteFrames_r7t5s")
 animation = &"jump"
 
 [node name="OverlayUIControl" type="Control" parent="Player"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_left = -256.0
@@ -323,31 +323,6 @@ offset_top = -194.0
 offset_right = 257.0
 offset_bottom = 93.0
 script = ExtResource("11_82m58")
-
-[node name="ButtonMarginContainer" type="MarginContainer" parent="Player/OverlayUIControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 482.0
-offset_top = 4.0
-offset_right = -6.0
-offset_bottom = -259.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PauseButton" type="Button" parent="Player/OverlayUIControl/ButtonMarginContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Player/OverlayUIControl/ButtonMarginContainer/PauseButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("12_8ymk0")
-expand_mode = 1
 
 [node name="SettingsControl" type="Control" parent="Player/OverlayUIControl"]
 process_mode = 2
@@ -471,7 +446,6 @@ text = "Exit Game"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x2mid")
 
-[connection signal="pressed" from="Player/OverlayUIControl/ButtonMarginContainer/PauseButton" to="Player/OverlayUIControl" method="_Pause"]
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MasterHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_master_h_slider_value_changed"]
 [connection signal="drag_ended" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_music_h_slider_drag_ended"]
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_music_h_slider_value_changed"]
