@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://byl02f8478yng"
+path="res://.godot/imported/hearty - Aventure.ogg-7e7fc38a1dd177b38346952cd877d454.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/hearty - Aventure.ogg"
+dest_files=["res://.godot/imported/hearty - Aventure.ogg-7e7fc38a1dd177b38346952cd877d454.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

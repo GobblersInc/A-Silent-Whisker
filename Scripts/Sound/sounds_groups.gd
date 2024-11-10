@@ -2,4 +2,4 @@ extends Object
 
 class_name Groups
 
-enum {TEST_1, TEST_2, TEST_3}
+enum {BG_MUSIC, WEATHER_RAIN, WEATHER_SNOW, WEATHER_WIND, CITY_SOUNDS, NIGHT_SOUNDS}
