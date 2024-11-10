@@ -1,9 +1,124 @@
 {
   "audio_files": {
-	"TestMusic": {
-	  "bus": "Master",
-	  "group": "TEST_1",
-	  "path": "res://Assets/Audio/Music/TestMusic.ogg"
+	"cozycoffeehouse": {
+	  "bus": "Music",
+	  "group": "BG_MUSIC",
+	  "path": "res://Assets/Audio/Music/cozycoffeehouse - Lunar Years.ogg"
+	}, 
+	"floatinggarden": {
+	  "bus": "Music",
+	  "group": "BG_MUSIC",
+	  "path": "res://Assets/Audio/Music/floatinggarden - Bohdan Hlukhov.ogg"
+	}, 
+	"hearty": {
+	  "bus": "Music",
+	  "group": "BG_MUSIC",
+	  "path": "res://Assets/Audio/Music/hearty - Aventure.ogg"
+	}, 
+	"longnight": {
+	  "bus": "Music",
+	  "group": "BG_MUSIC",
+	  "path": "res://Assets/Audio/Music/longnight - Bohdan Hlukhov.ogg"
+	}, 
+	"melancholylull": {
+	  "bus": "Music",
+	  "group": "BG_MUSIC",
+	  "path": "res://Assets/Audio/Music/melancholylull - Vital.ogg"
+	}, 
+	"moonlightcoffee": {
+	  "bus": "Music",
+	  "group": "BG_MUSIC",
+	  "path": "res://Assets/Audio/Music/moonlightcoffee - Yunior Arronte.ogg"
+	}, 
+	"moonlightdrive": {
+	  "bus": "Music",
+	  "group": "BG_MUSIC",
+	  "path": "res://Assets/Audio/Music/moonlightdrive - Yunior Arronte.ogg"
+	}, 
+	"rainyday": {
+	  "bus": "Music",
+	  "group": "BG_MUSIC",
+	  "path": "res://Assets/Audio/Music/rainyday - Yunior Arronte.ogg"
+	}, 
+	"yesterday": {
+	  "bus": "Music",
+	  "group": "BG_MUSIC",
+	  "path": "res://Assets/Audio/Music/yesterday - Aventure.ogg"
+	},
+	"Sirens": {
+	  "bus": "SFX",
+	  "group": "CITY_SOUNDS",
+	  "path": "res://Assets/Audio/SFX/22601__martypinso__dmp002011-rumbcity-sirens.ogg"
+	},
+	"City Ambience 01": {
+	  "bus": "SFX",
+	  "group": "CITY_SOUNDS",
+	  "path": "res://Assets/Audio/SFX/121299__lth_stp__city-traffic-ambience-1.ogg"
+	},
+	"Crickets": {
+	  "bus": "SFX",
+	  "group": "NIGHT_SOUNDS",
+	  "path": "res://Assets/Audio/SFX/221164__caquet__crickets-in-the-night.ogg"
+	},
+	"City Ambience 02": {
+	  "bus": "SFX",
+	  "group": "CITY_SOUNDS",
+	  "path": "res://Assets/Audio/SFX/237329__soundkrampf__night-city-atmosphere.ogg"
+	},
+	"City Ambience 03": {
+	  "bus": "SFX",
+	  "group": "CITY_SOUNDS",
+	  "path": "res://Assets/Audio/SFX/241731__deleted_user_4401185__fairfield-city-sounds-1.ogg"
+	},
+	"City Ambience 04": {
+	  "bus": "SFX",
+	  "group": "CITY_SOUNDS",
+	  "path": "res://Assets/Audio/SFX/377628__jgrzinich__windy-city-night-ambience.ogg"
+	},
+	"Snow 01": {
+	  "bus": "Weather",
+	  "group": "WEATHER_SNOW",
+	  "path": "res://Assets/Audio/Weather/90898__krnd__snowing-in-dresden-heide.ogg"
+	},
+	"Wind 01": {
+	  "bus": "Weather",
+	  "group": "WEATHER_WIND",
+	  "path": "res://Assets/Audio/Weather/261226__lwdickens__winter-wind-in-trees.ogg"
+	},
+	"Wind 02": {
+	  "bus": "Weather",
+	  "group": "WEATHER_WIND",
+	  "path": "res://Assets/Audio/Weather/333900__thedweebman__winter-windy-looped.ogg"
+	},
+	"Rain 01": {
+	  "bus": "Weather",
+	  "group": "WEATHER_RAIN",
+	  "path": "res://Assets/Audio/Weather/346642__inspectorj__rain-on-windows-interior-a.ogg"
+	},
+	"Rain 02": {
+	  "bus": "Weather",
+	  "group": "WEATHER_RAIN",
+	  "path": "res://Assets/Audio/Weather/401275__inspectorj__rain-moderate-c.ogg"
+	},
+	"Snow 02": {
+	  "bus": "Weather",
+	  "group": "WEATHER_SNOW",
+	  "path": "res://Assets/Audio/Weather/454213__kyles__swirling-winter-wind-gusty-grains-sand.ogg"
+	},
+	"Wind 03": {
+	  "bus": "Weather",
+	  "group": "WEATHER_WIND",
+	  "path": "res://Assets/Audio/Weather/454360__kyles__wind-light-calm-soft-breeze-deep-big-gusty.ogg"
+	},
+	"Rain 03": {
+	  "bus": "Weather",
+	  "group": "WEATHER_RAIN",
+	  "path": "res://Assets/Audio/Weather/518863__idomusics__rain.ogg"
+	},
+	"Rain 04": {
+	  "bus": "Weather",
+	  "group": "WEATHER_RAIN",
+	  "path": "res://Assets/Audio/Weather/737387__lg__20240520-rain-big-city-02.ogg"
 	}
   }
 }
