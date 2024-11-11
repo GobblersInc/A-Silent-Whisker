@@ -12,12 +12,12 @@ func _on_options_button_pressed():
 	print("Options button pressed") 
 
 #Test main menu audio
-#func _ready():
-	##This is temp janky method for presetting volume within each bus
-	##Needs to be replaced unless jank is the way
-	#audio_manager.set_bus_volume(Busses.MUSIC, 0.5)
-	#audio_manager.set_bus_volume(Busses.SFX, 0.5)
-	#audio_manager.set_bus_volume(Busses.WEATHER, 0.5)
-	#audio_manager.set_bus_volume(Busses.MASTER, 0.5)
-	#
-	#audio_manager.play_sound("TestMusic")
+func _ready():
+	#This is temp janky method for presetting volume within each bus
+	#Needs to be replaced unless jank is the way
+	audio_manager.set_bus_volume(Busses.MUSIC, 0.5)
+	audio_manager.set_bus_volume(Busses.SFX, 0.5)
+	audio_manager.set_bus_volume(Busses.WEATHER, 0.5)
+	audio_manager.set_bus_volume(Busses.MASTER, 0.5)
+	
+	audio_manager.play_single_sound("Sirens", false)

@@ -2,12 +2,14 @@ extends RefCounted
 
 class_name AudioDefinition
 
+var name: String
 var bus: String
 var group: String
 var path: String
 var stream: AudioStream = null
 
-func _init(bus: String, group: String, path: String):
+func _init(name: String, bus: String, group: String, path: String):
+	self.name = name
 	self.bus = bus
 	self.group = group
 	self.path = path
