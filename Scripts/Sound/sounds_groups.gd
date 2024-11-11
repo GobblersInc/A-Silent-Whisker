@@ -1,5 +1,0 @@
-extends Object
-
-class_name Groups
-
-enum {BG_MUSIC, WEATHER_RAIN, WEATHER_SNOW, WEATHER_WIND, CITY_SOUNDS, NIGHT_SOUNDS}
