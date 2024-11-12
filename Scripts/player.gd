@@ -1,15 +1,8 @@
 extends CharacterBody2D
 
-@export var speed := 100
-@export var gravity := 980
-@export var jump_force := -300
-@export var sprint_multiplier := 2
-var left_pressed = false
-var right_pressed = false
-var last_direction_pressed = 0
+@onready var animated_sprite := $AnimatedSprite2D
+@onready var hitbox := $CollisionShape2D
 
-@export var wall_slide_speed := 100
-@export var wall_jump_force := Vector2(300, -400)
 @export var max_wall_jumps := 1
 var wall_jumps_remaining := max_wall_jumps
 var is_wall_sliding := false
@@ -17,30 +10,28 @@ var is_wall_sliding := false
 @export var coyote_time_duration := 0.125
 var coyote_time_remaining := 0.0
 
-@onready var animated_sprite := $AnimatedSprite2D
+# Variables used in player states
+var left := -1
+var right := 1
+var neutral := 0
 
-func _ready():
-	animated_sprite.play("idle")
-	
-func _input(event):
-	if event.is_action_pressed("move_left"):
-		left_pressed = true
-		last_direction_pressed = -1
-	if event.is_action_pressed("move_right"):
-		right_pressed = true
-		last_direction_pressed = 1
-	if event.is_action_released("move_left"):
-		left_pressed = false
-		if right_pressed:
-			last_direction_pressed = 1
-		else:
-			last_direction_pressed = 0
-	if event.is_action_released("move_right"):
-		right_pressed = false
-		if left_pressed:
-			last_direction_pressed = -1
-		else:
-			last_direction_pressed = 0
+var walk_speed := 100
+var sprint_speed := 200
+var sneak_speed := 45
+
+var jump_speed := -200
+var wall_jump_speed := -300
+var fall_speed := 980 # aka gravity
+var wall_slide_speed := 100
+
+var no_movement := 0
+
+var player = PlayerState.new()
+
+var jump_time := 0.0
+var max_hop := .16
+
+var animation_tween: Tween
 
 func _physics_process(delta):
 	var is_grounded := is_on_floor()
@@ -49,67 +40,80 @@ func _physics_process(delta):
 	if is_grounded:
 		coyote_time_remaining = coyote_time_duration
 		wall_jumps_remaining = max_wall_jumps
+		jump_time = 0.0
 	else:
 		coyote_time_remaining -= delta
 	
-	var direction = last_direction_pressed
+	movement()
 	
-	var sprint := Input.is_action_pressed("move_fast")
-	var jump := Input.is_action_just_pressed("move_up")
-	
-	var current_speed := speed
-	if sprint and direction != 0:
-		current_speed *= sprint_multiplier
-	
-	velocity.x = direction * current_speed
+	floor_jumping(delta)
 	
 	is_wall_sliding = false
 	if is_touching_wall and not is_grounded and velocity.y > 0:
 		is_wall_sliding = true
 		velocity.y = min(velocity.y, wall_slide_speed)
-		
-		var collision = get_last_slide_collision()
-		if collision:
-			var wall_normal = collision.get_normal()
-			if wall_normal.x < 0:
-				animated_sprite.rotation_degrees = -90
-			elif wall_normal.x > 0:
-				animated_sprite.rotation_degrees = 90
-	else:
-		animated_sprite.rotation_degrees = 0
+		if wall_jumps_remaining > 0:
+			wall_jumping()
 	
-	if jump:
-		if coyote_time_remaining > 0.0:
-			velocity.y = jump_force
-			coyote_time_remaining = 0.0
-		elif is_wall_sliding and wall_jumps_remaining > 0:
-			velocity.y = wall_jump_force.y
-			velocity.x = wall_jumps_remaining * get_wall_jump_direction()
-			wall_jumps_remaining -= 1
-			is_wall_sliding = false
-		animated_sprite.play("jump")
-	
-	if direction != 0 and not jump:
-		animated_sprite.play("walk")
-		animated_sprite.flip_h = direction > 0
-	elif not jump:
-		animated_sprite.play("idle")
-	
-	if not is_grounded and not is_wall_sliding:
-		velocity.y += gravity * delta
+	animate()
 	
 	move_and_slide()
+
+func movement():
+	var move_down = Input.is_action_pressed("move_down")
+	var move_fast = Input.is_action_pressed("move_fast")
+	var left_right_movement = Input.get_axis("move_left","move_right")
+	player.direction = left_right_movement
+	if player.direction != 0:
+		if move_down:
+			velocity.x = player.direction * sneak_speed
+			player.animation = "sneak"
+		elif move_fast:
+			velocity.x = player.direction * sprint_speed
+			player.animation = "sprint"
+		else:
+			velocity.x = player.direction * walk_speed
+			player.animation = "walk"
+	elif is_on_floor():
+		velocity.x = player.direction * walk_speed
+		if move_down:
+			player.animation = "crouch"
+		else:
+			player.animation = "idle"
+	if velocity.x > 0 and !move_down and !move_fast:
+		velocity.x = walk_speed
+	elif velocity.x < 0 and !move_down and !move_fast:
+		velocity.x = -walk_speed
+
+func floor_jumping(delta):
+	var move_up = Input.is_action_pressed("move_up")
+	if move_up and jump_time < max_hop and coyote_time_remaining > 0:
+		jump_time += delta
+		velocity.y = jump_speed
+	elif Input.is_action_just_released("move_up"):
+		jump_time = 9999
+	elif !is_on_floor():
+		velocity.y += fall_speed * delta
+
+func wall_jumping():
+	var wall_move_up = Input.is_action_just_pressed("move_up")
+	if wall_move_up:
+		velocity.y = wall_jump_speed
+		wall_jumps_remaining -= 1
+
+func animate():
+	if is_on_floor():
+		animated_sprite.play(player.animation)
 	
-func get_wall_jump_direction() -> int:
-	if is_on_wall():
-		var collision = get_last_slide_collision()
-		if collision:
-			if collision.get_normal().x > 0:
-				return -1
-			elif collision.get_normal().x < 0:
-				return 1
-	return 0
-
-
-func _on_button_pressed():
-	pass # Replace with function body.
+	if velocity.y < 0:
+		animated_sprite.play("jump")
+	elif velocity.y > 0:
+		if is_on_wall():
+			animated_sprite.play("wall_slide")
+		elif !is_on_wall():
+			animated_sprite.play("fall")
+		
+	if velocity.x > 0:
+		animated_sprite.flip_h = true
+	elif velocity.x < 0:
+		animated_sprite.flip_h = false

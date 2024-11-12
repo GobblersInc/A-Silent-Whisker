@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxr7dbsj16hx8"
-path="res://.godot/imported/tilesheet4x4streetsV3.png-f32edb2da48e0f359db2a6093dec1364.ctex"
+uid="uid://dopakk0suyjly"
+path="res://.godot/imported/CatCrouchWalk.png-25554f27a24c372fbd473b3d38920c1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileSheets/tilesheet4x4streetsV3.png"
-dest_files=["res://.godot/imported/tilesheet4x4streetsV3.png-f32edb2da48e0f359db2a6093dec1364.ctex"]
+source_file="res://Assets/PlayerSprites/Cat/klb art/CatCrouchWalk.png"
+dest_files=["res://.godot/imported/CatCrouchWalk.png-25554f27a24c372fbd473b3d38920c1c.ctex"]
 
 [params]
 
