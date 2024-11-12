@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brtmrgp2g0lcp"
-path="res://.godot/imported/front.png-c3019ce7b40228e98302b3e1ea9dbdd1.ctex"
+uid="uid://bbhgt3u1memax"
+path="res://.godot/imported/CatGoingUp.png-e54429d43536210d8af0c1a771025f96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/parallax/front.png"
-dest_files=["res://.godot/imported/front.png-c3019ce7b40228e98302b3e1ea9dbdd1.ctex"]
+source_file="res://Assets/PlayerSprites/Cat/Jump/CatGoingUp.png"
+dest_files=["res://.godot/imported/CatGoingUp.png-e54429d43536210d8af0c1a771025f96.ctex"]
 
 [params]
 

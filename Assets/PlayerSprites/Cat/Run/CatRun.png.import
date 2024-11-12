@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brtmrgp2g0lcp"
-path="res://.godot/imported/front.png-c3019ce7b40228e98302b3e1ea9dbdd1.ctex"
+uid="uid://r7wcomboirdm"
+path="res://.godot/imported/CatRun.png-1ce36c5009782c89457a7a1f65e639da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/parallax/front.png"
-dest_files=["res://.godot/imported/front.png-c3019ce7b40228e98302b3e1ea9dbdd1.ctex"]
+source_file="res://Assets/PlayerSprites/Cat/Run/CatRun.png"
+dest_files=["res://.godot/imported/CatRun.png-1ce36c5009782c89457a7a1f65e639da.ctex"]
 
 [params]
 
