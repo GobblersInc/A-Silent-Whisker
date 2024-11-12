@@ -19,19 +19,19 @@ func weather_select():
 	match current_weather:
 		Weather_Types.RAIN:
 			rain()
-			await wait(randf_range(10.0,10.0))
+			await wait(randf_range(20.0,40.0))
 			weather_select()
 		Weather_Types.SNOW:
 			snow()
-			await wait(randf_range(10.0,10.0))
+			await wait(randf_range(20.0,40.0))
 			weather_select()
 		Weather_Types.SUN:
 			sun()
-			await wait(randf_range(10.0,10.0))
+			await wait(randf_range(20.0,40.0))
 			weather_select()
 		Weather_Types.WIND:
 			wind()
-			await wait(randf_range(10.0,10.0))
+			await wait(randf_range(20.0,40.0))
 			weather_select()
 		
 func weather_sound_select():

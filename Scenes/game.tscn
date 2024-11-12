@@ -227,36 +227,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SystemFont" id="SystemFont_jk4xf"]
-font_names = PackedStringArray("")
-font_weight = 900
-subpixel_positioning = 0
-oversampling = 3.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_6wx77"]
-font = SubResource("SystemFont_jk4xf")
-font_size = 20
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="SystemFont" id="SystemFont_ph8yw"]
-font_names = PackedStringArray("")
-font_weight = 900
-subpixel_positioning = 0
-oversampling = 3.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_vbvtj"]
-font = SubResource("SystemFont_ph8yw")
-font_size = 15
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="SystemFont" id="SystemFont_g41ag"]
-font_names = PackedStringArray("")
-font_weight = 700
-subpixel_positioning = 0
-oversampling = 3.0
-
 [sub_resource type="Curve" id="Curve_mj6ip"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.00633, 0.0, 0, 0]
 point_count = 2
@@ -419,6 +389,36 @@ glow_blend_mode = 0
 glow_hdr_threshold = 0.0
 glow_hdr_scale = 1.48
 
+[sub_resource type="SystemFont" id="SystemFont_jk4xf"]
+font_names = PackedStringArray("")
+font_weight = 900
+subpixel_positioning = 0
+oversampling = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_6wx77"]
+font = SubResource("SystemFont_jk4xf")
+font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_ph8yw"]
+font_names = PackedStringArray("")
+font_weight = 900
+subpixel_positioning = 0
+oversampling = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_vbvtj"]
+font = SubResource("SystemFont_ph8yw")
+font_size = 15
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_g41ag"]
+font_names = PackedStringArray("")
+font_weight = 700
+subpixel_positioning = 0
+oversampling = 3.0
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_invxj"]
 polygon = PackedVector2Array(-511, 290, -417, 291, -416, 96, -161, 96, -161, 128, -96, 128, -96, 143, -128, 143, -128, 223, 384, 223, 384, 192, 416, 192, 416, 224, 737, 223, 737, 159, 864, 223, 1088, 223, 1089, 352, -509, 347)
 
@@ -476,6 +476,38 @@ shape = SubResource("RectangleShape2D_g6lme")
 position = Vector2(-1, 8)
 sprite_frames = SubResource("SpriteFrames_r7t5s")
 animation = &"jump"
+
+[node name="Snow" type="GPUParticles2D" parent="Player"]
+position = Vector2(0, -275)
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_xpafo")
+lifetime = 8.0
+
+[node name="Rain" type="GPUParticles2D" parent="Player"]
+position = Vector2(0, -275)
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_5oh1t")
+lifetime = 1.5
+trail_enabled = true
+trail_lifetime = 0.03
+
+[node name="Wind" type="GPUParticles2D" parent="Player"]
+position = Vector2(336, -94)
+emitting = false
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_fugeq")
+texture = SubResource("GradientTexture2D_xhjhs")
+lifetime = 6.0
+randomness = 0.5
+trail_enabled = true
+trail_lifetime = 0.6
+trail_sections = 12
+trail_section_subdivisions = 6
+
+[node name="Sun" type="WorldEnvironment" parent="Player"]
+environment = SubResource("Environment_7ttuf")
 
 [node name="OverlayUIControl" type="Control" parent="Player"]
 layout_mode = 3
@@ -632,38 +664,6 @@ text = "Exit Game"
 
 [node name="WeatherControlNode" type="Node" parent="Player"]
 script = ExtResource("15_7paqb")
-
-[node name="Snow" type="GPUParticles2D" parent="Player"]
-position = Vector2(0, -275)
-emitting = false
-amount = 500
-process_material = SubResource("ParticleProcessMaterial_xpafo")
-lifetime = 8.0
-
-[node name="Rain" type="GPUParticles2D" parent="Player"]
-position = Vector2(0, -275)
-emitting = false
-amount = 500
-process_material = SubResource("ParticleProcessMaterial_5oh1t")
-lifetime = 1.5
-trail_enabled = true
-trail_lifetime = 0.03
-
-[node name="Wind" type="GPUParticles2D" parent="Player"]
-position = Vector2(336, -94)
-emitting = false
-amount = 2
-process_material = SubResource("ParticleProcessMaterial_fugeq")
-texture = SubResource("GradientTexture2D_xhjhs")
-lifetime = 6.0
-randomness = 0.5
-trail_enabled = true
-trail_lifetime = 0.6
-trail_sections = 12
-trail_section_subdivisions = 6
-
-[node name="Sun" type="WorldEnvironment" parent="Player"]
-environment = SubResource("Environment_7ttuf")
 
 [node name="GroundCollider" type="LightOccluder2D" parent="."]
 position = Vector2(234, 137)
