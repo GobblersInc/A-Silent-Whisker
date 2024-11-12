@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do3hq8xipcq36"
-path="res://.godot/imported/2tilesheet4x4streetsV1.png-ceedaccbf52b2dabff5ee7ae921435d6.ctex"
+uid="uid://baytxmioo8hnj"
+path="res://.godot/imported/CatIdleCrouch.png-1fea9fdfc36760d215d0ffcd347a62f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileSheets/2tilesheet4x4streetsV1.png"
-dest_files=["res://.godot/imported/2tilesheet4x4streetsV1.png-ceedaccbf52b2dabff5ee7ae921435d6.ctex"]
+source_file="res://Assets/PlayerSprites/Cat/klb art/CatIdleCrouch.png"
+dest_files=["res://.godot/imported/CatIdleCrouch.png-1fea9fdfc36760d215d0ffcd347a62f9.ctex"]
 
 [params]
 
