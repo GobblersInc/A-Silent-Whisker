@@ -76,3 +76,4 @@ pause={
 
 textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0.156863, 0.113725, 0.317647, 1)
+viewport/hdr_2d=true
