@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< HEAD:Assets/TileSheets/PropCyberSheetV1.3.png.import
-uid="uid://bv60it5pbrnl2"
+uid="uid://cleqp2g7f1tgp"
 path="res://.godot/imported/PropCyberSheetV1.3.png-426effe624de878443670d4192e821bf.ctex"
-========
-uid="uid://o70kvw6rfk1x"
-path="res://.godot/imported/CatIdle.png-125575f8100e459553f2666d942ac027.ctex"
->>>>>>>> main:Assets/PlayerSprites/Cat/Idle/CatIdle.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< HEAD:Assets/TileSheets/PropCyberSheetV1.3.png.import
 source_file="res://Assets/TileSheets/PropCyberSheetV1.3.png"
 dest_files=["res://.godot/imported/PropCyberSheetV1.3.png-426effe624de878443670d4192e821bf.ctex"]
-========
-source_file="res://Assets/PlayerSprites/Cat/Idle/CatIdle.png"
-dest_files=["res://.godot/imported/CatIdle.png-125575f8100e459553f2666d942ac027.ctex"]
->>>>>>>> main:Assets/PlayerSprites/Cat/Idle/CatIdle.png.import
 
 [params]
 

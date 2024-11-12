@@ -25,7 +25,7 @@ var walk_speed := 100
 var sprint_speed := 200
 var sneak_speed := 45
 
-var jump_speed := -300
+var jump_speed := -200
 var fall_speed := 980 # aka gravity
 var wall_slide_speed := 100
 
@@ -33,13 +33,40 @@ var no_movement := 0
 
 var player = PlayerState.new()
 
-func movement(delta):
-	var move_up = Input.is_action_just_pressed("move_up")
+var start_jump_time := 0.0
+var jump_time := 0.0
+var max_hop := .16
+
+func movement():
 	var move_down = Input.is_action_pressed("move_down")
 	var move_fast = Input.is_action_pressed("move_fast")
 	var left_right_movement = Input.get_axis("move_left","move_right")
 	player.direction = left_right_movement
-	do_horizontal_movement(player, move_down, move_fast)
+	if player.direction != 0:
+		if move_down:
+			velocity.x = player.direction * sneak_speed
+		elif move_fast:
+			velocity.x = player.direction * sprint_speed
+		else:
+			velocity.x = player.direction * walk_speed
+	elif is_on_floor():
+		velocity.x = player.direction * walk_speed
+	if velocity.x > 0 and !move_down and !move_fast:
+		velocity.x = walk_speed
+	elif velocity.x < 0 and !move_down and !move_fast:
+		velocity.x = -walk_speed
+
+func jumping(delta):
+	var move_up = Input.is_action_pressed("move_up")
+	if is_on_floor():
+		jump_time = 0.0
+	if move_up and jump_time < max_hop:
+		jump_time += delta
+		velocity.y = jump_speed
+	elif Input.is_action_just_released("move_up"):
+		jump_time = 9999
+	elif !is_on_floor():
+		velocity.y += fall_speed * delta
 
 func _physics_process(delta):
 	var is_grounded := is_on_floor()
@@ -51,8 +78,8 @@ func _physics_process(delta):
 	else:
 		coyote_time_remaining -= delta
 	
-	movement(delta)
-	print(velocity)
+	movement()
+	jumping(delta)
 	# JUMPING LOGIC TODO
 	#TODO: NEED TO TRACK WHEN THE PLAYER IS IN THE AIR AND DEPENDING ON + or - VELOCITY PLAY Animation
 	#TODO: make a big priority tree on what takes what priority when certain things effect the player, like idle, falling, moving, etc
@@ -78,13 +105,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-func do_horizontal_movement(playerstate: PlayerState, move_down, move_fast):
-	if move_down:
-		velocity.x = playerstate.direction * sneak_speed
-	elif move_fast:
-		velocity.x = playerstate.direction * sprint_speed
-	else:
-		velocity.x = playerstate.direction * walk_speed
+
 
 func get_wall_jump_direction() -> int:
 	if is_on_wall():

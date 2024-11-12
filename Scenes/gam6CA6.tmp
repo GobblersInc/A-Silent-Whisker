@@ -658,6 +658,9 @@ tile_set = SubResource("TileSet_s6elk")
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(234, 337)
 script = ExtResource("5_ug22v")
+wall_jump_force = null
+max_wall_jumps = null
+coyote_time_duration = null
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -50)
