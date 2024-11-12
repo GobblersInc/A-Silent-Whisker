@@ -1,5 +1,6 @@
 [gd_scene load_steps=82 format=4 uid="uid://c1ifcmjlefw85"]
 
+[ext_resource type="Script" path="res://Scripts/Managers/save_manager.gd" id="1_d287d"]
 [ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/Parallax/back.png" id="1_sn3yr"]
 [ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/Parallax/buildings.png" id="2_hj71v"]
 [ext_resource type="Texture2D" uid="uid://brtmrgp2g0lcp" path="res://Assets/Parallax/front.png" id="3_t0is6"]
@@ -12,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://c1swbgou8vqds" path="res://Assets/PlayerSprites/Cat/Jump/CatGoingUpV2.png" id="9_h6sfl"]
 [ext_resource type="Texture2D" uid="uid://r7wcomboirdm" path="res://Assets/PlayerSprites/Cat/Run/CatRun.png" id="10_dahx2"]
 [ext_resource type="Script" path="res://Scripts/Managers/ui_manager.gd" id="11_82m58"]
-[ext_resource type="Texture2D" uid="uid://dw5xnpw8umfpk" path="res://Assets/UIButtons/PauseButtonRedo.png" id="12_8ymk0"]
 [ext_resource type="Script" path="res://Scripts/Managers/settings_manager.gd" id="13_o43nh"]
 [ext_resource type="Material" uid="uid://b8rntfto8sibn" path="res://Assets/shaders/blur.tres" id="14_pd2sw"]
 [ext_resource type="Script" path="res://Scripts/Managers/weather.gd" id="15_7paqb"]
@@ -968,6 +968,7 @@ subpixel_positioning = 0
 oversampling = 3.0
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_d287d")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1055,7 +1056,6 @@ trail_section_subdivisions = 6
 environment = SubResource("Environment_7ttuf")
 
 [node name="OverlayUIControl" type="Control" parent="Player"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -256.0
@@ -1063,31 +1063,6 @@ offset_top = -194.0
 offset_right = 257.0
 offset_bottom = 93.0
 script = ExtResource("11_82m58")
-
-[node name="ButtonMarginContainer" type="MarginContainer" parent="Player/OverlayUIControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 482.0
-offset_top = 4.0
-offset_right = -6.0
-offset_bottom = -259.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PauseButton" type="Button" parent="Player/OverlayUIControl/ButtonMarginContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Player/OverlayUIControl/ButtonMarginContainer/PauseButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("12_8ymk0")
-expand_mode = 1
 
 [node name="SettingsControl" type="Control" parent="Player/OverlayUIControl"]
 process_mode = 2
@@ -1106,7 +1081,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 4.0
+offset_left = -65.0
+offset_top = -37.0
+offset_right = 64.0
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1124,14 +1102,17 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -238.5
-offset_top = 2.0
-offset_right = 252.5
-offset_bottom = 303.0
+anchor_bottom = 0.5
+offset_left = -245.5
+offset_top = -155.0
+offset_right = 245.5
+offset_bottom = 155.0
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
@@ -1192,6 +1173,22 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_constants/separation = 14
 
+[node name="SaveButton" type="Button" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_g41ag")
+theme_override_font_sizes/font_size = 15
+text = "Save Game"
+
+[node name="ReloadButton" type="Button" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_g41ag")
+theme_override_font_sizes/font_size = 15
+text = "Reload Save"
+
 [node name="BackButton" type="Button" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -1211,12 +1208,13 @@ text = "Exit Game"
 [node name="WeatherControlNode" type="Node" parent="Player"]
 script = ExtResource("15_7paqb")
 
-[connection signal="pressed" from="Player/OverlayUIControl/ButtonMarginContainer/PauseButton" to="Player/OverlayUIControl" method="_Pause"]
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MasterHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_master_h_slider_value_changed"]
 [connection signal="drag_ended" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_music_h_slider_drag_ended"]
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_music_h_slider_value_changed"]
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/SfxHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_sfx_h_slider_value_changed"]
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/WeatherHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_weather_h_slider_value_changed"]
+[connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/SaveButton" to="Player/OverlayUIControl/SettingsControl" method="_on_save_button_pressed"]
+[connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/ReloadButton" to="Player/OverlayUIControl/SettingsControl" method="_on_reload_button_pressed"]
 [connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl" method="_Unpause"]
 [connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl/SettingsControl" method="_on_back_button_pressed"]
 [connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/ExitButton" to="Player/OverlayUIControl/SettingsControl" method="_on_exit_button_pressed"]
