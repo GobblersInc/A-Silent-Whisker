@@ -13,12 +13,10 @@ func _input(event):
 			_Pause()
 	
 func _Pause():
-	print("The Pause Button HAS BEEN PRESSED!!!")
 	get_tree().set_pause(true)
 	_SettingsScreen.show()
 	
 func _Unpause():
-	print("The Unpause Button HAS BEEN PRESSED!!!")
 	get_tree().set_pause(false) 
 	_SettingsScreen.hide()
 	

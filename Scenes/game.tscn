@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=4 uid="uid://c1ifcmjlefw85"]
+[gd_scene load_steps=41 format=4 uid="uid://c1ifcmjlefw85"]
 
-[ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/parallax/back.png" id="1_sn3yr"]
-[ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/parallax/buildings.png" id="2_hj71v"]
-[ext_resource type="Texture2D" uid="uid://brtmrgp2g0lcp" path="res://Assets/parallax/front.png" id="3_t0is6"]
+[ext_resource type="Script" path="res://Scripts/Managers/save_manager.gd" id="1_d287d"]
+[ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/Parallax/back.png" id="1_sn3yr"]
+[ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/Parallax/buildings.png" id="2_hj71v"]
+[ext_resource type="Texture2D" uid="uid://brtmrgp2g0lcp" path="res://Assets/Parallax/front.png" id="3_t0is6"]
 [ext_resource type="Texture2D" uid="uid://cxr7dbsj16hx8" path="res://Assets/TileSheets/tilesheet4x4streetsV3.png" id="4_yhlml"]
 [ext_resource type="Texture2D" uid="uid://do3hq8xipcq36" path="res://Assets/TileSheets/2tilesheet4x4streetsV1.png" id="5_8euk6"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="5_ug22v"]
@@ -260,6 +261,7 @@ background_mode = 1
 background_color = Color(0.156863, 0.113725, 0.317647, 1)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_d287d")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -427,6 +429,22 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_constants/separation = 14
 
+[node name="SaveButton" type="Button" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_g41ag")
+theme_override_font_sizes/font_size = 15
+text = "Save Game"
+
+[node name="ReloadButton" type="Button" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_g41ag")
+theme_override_font_sizes/font_size = 15
+text = "Reload Save"
+
 [node name="BackButton" type="Button" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -451,6 +469,8 @@ environment = SubResource("Environment_x2mid")
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_music_h_slider_value_changed"]
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/SfxHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_sfx_h_slider_value_changed"]
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/WeatherHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_weather_h_slider_value_changed"]
+[connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/SaveButton" to="Player/OverlayUIControl/SettingsControl" method="_on_save_button_pressed"]
+[connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/ReloadButton" to="Player/OverlayUIControl/SettingsControl" method="_on_reload_button_pressed"]
 [connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl" method="_Unpause"]
 [connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl/SettingsControl" method="_on_back_button_pressed"]
 [connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/ExitButton" to="Player/OverlayUIControl/SettingsControl" method="_on_exit_button_pressed"]
