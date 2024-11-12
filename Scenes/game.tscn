@@ -1,8 +1,8 @@
-[gd_scene load_steps=41 format=4 uid="uid://c1ifcmjlefw85"]
+[gd_scene load_steps=66 format=4 uid="uid://c1ifcmjlefw85"]
 
-[ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/Parallax/back.png" id="1_sn3yr"]
-[ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/Parallax/buildings.png" id="2_hj71v"]
-[ext_resource type="Texture2D" uid="uid://brtmrgp2g0lcp" path="res://Assets/Parallax/front.png" id="3_t0is6"]
+[ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/parallax/back.png" id="1_sn3yr"]
+[ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/parallax/buildings.png" id="2_hj71v"]
+[ext_resource type="Texture2D" uid="uid://brtmrgp2g0lcp" path="res://Assets/parallax/front.png" id="3_t0is6"]
 [ext_resource type="Texture2D" uid="uid://cxr7dbsj16hx8" path="res://Assets/TileSheets/tilesheet4x4streetsV3.png" id="4_yhlml"]
 [ext_resource type="Texture2D" uid="uid://do3hq8xipcq36" path="res://Assets/TileSheets/2tilesheet4x4streetsV1.png" id="5_8euk6"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="5_ug22v"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dw5xnpw8umfpk" path="res://Assets/UIButtons/PauseButtonRedo.png" id="12_8ymk0"]
 [ext_resource type="Script" path="res://Scripts/Managers/settings_manager.gd" id="13_o43nh"]
 [ext_resource type="Material" uid="uid://b8rntfto8sibn" path="res://Assets/shaders/blur.tres" id="14_pd2sw"]
+[ext_resource type="Script" path="res://Scripts/Managers/weather.gd" id="15_7paqb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_376ax"]
 texture = ExtResource("4_yhlml")
@@ -256,9 +257,170 @@ font_weight = 700
 subpixel_positioning = 0
 oversampling = 3.0
 
-[sub_resource type="Environment" id="Environment_x2mid"]
-background_mode = 1
-background_color = Color(0.156863, 0.113725, 0.317647, 1)
+[sub_resource type="Curve" id="Curve_mj6ip"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.00633, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0d6lr"]
+curve = SubResource("Curve_mj6ip")
+
+[sub_resource type="Gradient" id="Gradient_8eoha"]
+offsets = PackedFloat32Array(0.422535, 0.690141)
+colors = PackedColorArray(1, 1, 1, 0.403922, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_214ix"]
+gradient = SubResource("Gradient_8eoha")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xpafo"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(100, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(650, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+angular_velocity_min = -12.19
+angular_velocity_max = 182.54
+radial_velocity_min = -1.00002
+radial_velocity_max = -1.00002
+gravity = Vector3(-45, 80, 0)
+tangential_accel_min = -3.0
+tangential_accel_max = 3.0
+damping_min = 5.0
+damping_max = 5.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_214ix")
+alpha_curve = SubResource("CurveTexture_0d6lr")
+turbulence_enabled = true
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 0.8
+turbulence_noise_speed_random = 0.0
+turbulence_influence_min = 0.02
+turbulence_influence_max = 0.08
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+
+[sub_resource type="Curve" id="Curve_1d4hf"]
+max_value = 0.3
+_data = [Vector2(0, 0), 0.0, 1.6581, 0, 0, Vector2(0.506224, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 0.0032967), -1.58901, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_og7mc"]
+curve = SubResource("Curve_1d4hf")
+
+[sub_resource type="Gradient" id="Gradient_7u7vb"]
+offsets = PackedFloat32Array(0.342723, 0.765258)
+colors = PackedColorArray(0.397015, 0.994903, 1, 1, 1, 1, 1, 0.054902)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s0ehp"]
+gradient = SubResource("Gradient_7u7vb")
+
+[sub_resource type="Curve" id="Curve_wun7r"]
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7ai01"]
+_data = [Vector2(0, 0.494505), 0.0, 0.0, 0, 0, Vector2(0.326667, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_ij05e"]
+max_value = 3.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_26a4g"]
+curve_x = SubResource("Curve_wun7r")
+curve_y = SubResource("Curve_7ai01")
+curve_z = SubResource("Curve_ij05e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5oh1t"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(650, 1, 1)
+angle_min = -450.9
+angle_max = 356.4
+initial_velocity_max = 75.0
+gravity = Vector3(0, 900, 0)
+scale_min = 0.2
+scale_max = 0.6
+scale_over_velocity_curve = SubResource("CurveXYZTexture_26a4g")
+color_ramp = SubResource("GradientTexture1D_s0ehp")
+alpha_curve = SubResource("CurveTexture_og7mc")
+turbulence_noise_strength = 0.14
+turbulence_noise_scale = 1.0
+turbulence_influence_min = 0.059
+turbulence_influence_max = 0.059
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.05
+
+[sub_resource type="Gradient" id="Gradient_ht63p"]
+offsets = PackedFloat32Array(0.00469484, 0.521127, 1)
+colors = PackedColorArray(1, 1, 1, 0.121569, 1, 1, 1, 1, 1, 1, 1, 0.0705882)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d3hr2"]
+gradient = SubResource("Gradient_ht63p")
+
+[sub_resource type="Gradient" id="Gradient_kci0e"]
+offsets = PackedFloat32Array(0, 0.502347, 0.995305)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_opyuu"]
+gradient = SubResource("Gradient_kci0e")
+
+[sub_resource type="Curve" id="Curve_1t66r"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, -37.3626), 0.0, 0.0, 0, 0, Vector2(0.128631, 81.3187), 0.0, 0.0, 0, 0, Vector2(0.253112, -32.967), 0.0, 0.0, 0, 0, Vector2(0.373444, 85.7143), 0.0, 0.0, 0, 0, Vector2(0.506224, -24.1758), 0.0, 0.0, 0, 0, Vector2(0.630705, 81.3187), 0.0, 0.0, 0, 0, Vector2(0.751037, -19.7802), 0.0, 0.0, 0, 0, Vector2(0.86722, 76.9231), 0.0, 0.0, 0, 0, Vector2(0.995851, -24.1758), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[sub_resource type="CurveTexture" id="CurveTexture_48m4p"]
+curve = SubResource("Curve_1t66r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fugeq"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(150, 100, 1)
+angle_min = -301.9
+angle_max = 247.7
+gravity = Vector3(-100, 20, 0)
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = 2.0
+tangential_accel_curve = SubResource("CurveTexture_48m4p")
+damping_max = 100.0
+scale_min = 1.2
+scale_max = 1.7
+color_ramp = SubResource("GradientTexture1D_opyuu")
+color_initial_ramp = SubResource("GradientTexture1D_d3hr2")
+turbulence_noise_scale = 0.1
+turbulence_noise_speed_random = 0.01
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.01
+
+[sub_resource type="Gradient" id="Gradient_cprb6"]
+offsets = PackedFloat32Array(0.00408163, 0.526531, 1)
+colors = PackedColorArray(0.603922, 0.956863, 0.898039, 0, 0.603922, 0.956863, 0.898039, 1, 0.603922, 0.956863, 0.898039, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xhjhs"]
+gradient = SubResource("Gradient_cprb6")
+width = 1
+height = 32
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Environment" id="Environment_7ttuf"]
+background_mode = 3
+glow_intensity = 0.88
+glow_strength = 0.9
+glow_blend_mode = 0
+glow_hdr_threshold = 0.0
+glow_hdr_scale = 1.48
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_invxj"]
+polygon = PackedVector2Array(-511, 290, -417, 291, -416, 96, -161, 96, -161, 128, -96, 128, -96, 143, -128, 143, -128, 223, 384, 223, 384, 192, 416, 192, 416, 224, 737, 223, 737, 159, 864, 223, 1088, 223, 1089, 352, -509, 347)
 
 [node name="Game" type="Node2D"]
 
@@ -468,8 +630,44 @@ theme_override_fonts/font = SubResource("SystemFont_g41ag")
 theme_override_font_sizes/font_size = 15
 text = "Exit Game"
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_x2mid")
+[node name="WeatherControlNode" type="Node" parent="Player"]
+script = ExtResource("15_7paqb")
+
+[node name="Snow" type="GPUParticles2D" parent="Player"]
+position = Vector2(0, -275)
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_xpafo")
+lifetime = 8.0
+
+[node name="Rain" type="GPUParticles2D" parent="Player"]
+position = Vector2(0, -275)
+emitting = false
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_5oh1t")
+lifetime = 1.5
+trail_enabled = true
+trail_lifetime = 0.03
+
+[node name="Wind" type="GPUParticles2D" parent="Player"]
+position = Vector2(336, -94)
+emitting = false
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_fugeq")
+texture = SubResource("GradientTexture2D_xhjhs")
+lifetime = 6.0
+randomness = 0.5
+trail_enabled = true
+trail_lifetime = 0.6
+trail_sections = 12
+trail_section_subdivisions = 6
+
+[node name="Sun" type="WorldEnvironment" parent="Player"]
+environment = SubResource("Environment_7ttuf")
+
+[node name="GroundCollider" type="LightOccluder2D" parent="."]
+position = Vector2(234, 137)
+occluder = SubResource("OccluderPolygon2D_invxj")
 
 [connection signal="pressed" from="Player/OverlayUIControl/ButtonMarginContainer/PauseButton" to="Player/OverlayUIControl" method="_Pause"]
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MasterHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_master_h_slider_value_changed"]
