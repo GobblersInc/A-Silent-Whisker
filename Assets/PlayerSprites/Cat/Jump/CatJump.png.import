@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r7wcomboirdm"
-path="res://.godot/imported/CatRun.png-0296ca5df970078eafc573ed27f79f30.ctex"
+uid="uid://dviccwueujdal"
+path="res://.godot/imported/CatJump.png-0f03f69c7c477022da99d5f1e967e768.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PlayerSprites/CatRun.png"
-dest_files=["res://.godot/imported/CatRun.png-0296ca5df970078eafc573ed27f79f30.ctex"]
+source_file="res://Assets/PlayerSprites/Cat/Jump/CatJump.png"
+dest_files=["res://.godot/imported/CatJump.png-0f03f69c7c477022da99d5f1e967e768.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmhscgdjn8j2t"
-path="res://.godot/imported/CatNotStill.png-e87202e0f6e4f67bf34e65cbfd9deb1c.ctex"
+uid="uid://dr0coeuln21d3"
+path="res://.godot/imported/CatGoingDown.png-140756da91b5b9a8f0dadc271098a9dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PlayerSprites/CatNotStill.png"
-dest_files=["res://.godot/imported/CatNotStill.png-e87202e0f6e4f67bf34e65cbfd9deb1c.ctex"]
+source_file="res://Assets/PlayerSprites/Cat/Jump/CatGoingDown.png"
+dest_files=["res://.godot/imported/CatGoingDown.png-140756da91b5b9a8f0dadc271098a9dc.ctex"]
 
 [params]
 
