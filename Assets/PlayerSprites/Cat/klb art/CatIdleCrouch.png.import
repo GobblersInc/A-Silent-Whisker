@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi2l0se4xgegq"
-path="res://.godot/imported/CatIdle.png-125575f8100e459553f2666d942ac027.ctex"
+uid="uid://baytxmioo8hnj"
+path="res://.godot/imported/CatIdleCrouch.png-1fea9fdfc36760d215d0ffcd347a62f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PlayerSprites/Cat/Idle/CatIdle.png"
-dest_files=["res://.godot/imported/CatIdle.png-125575f8100e459553f2666d942ac027.ctex"]
+source_file="res://Assets/PlayerSprites/Cat/klb art/CatIdleCrouch.png"
+dest_files=["res://.godot/imported/CatIdleCrouch.png-1fea9fdfc36760d215d0ffcd347a62f9.ctex"]
 
 [params]
 
