@@ -38,13 +38,13 @@ func weather_sound_select():
 	stop_weather_sound()
 	match current_weather:
 		Weather_Types.RAIN:
-			stream_player = audio_manager.play_group("WEATHER_RAIN", true, true, true)
+			stream_player = AudioManager.play_group("WEATHER_RAIN", true, true, true)
 		Weather_Types.SNOW:
-			stream_player = audio_manager.play_group("WEATHER_SNOW", true, true, true)
+			stream_player = AudioManager.play_group("WEATHER_SNOW", true, true, true)
 		Weather_Types.SUN:
-			stream_player = audio_manager.play_group("CITY_SOUNDS", true, true, true)
+			stream_player = AudioManager.play_group("CITY_SOUNDS", true, true, true)
 		Weather_Types.WIND:
-			stream_player = audio_manager.play_group("WEATHER_WIND", true, true, true)
+			stream_player = AudioManager.play_group("WEATHER_WIND", true, true, true)
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
