@@ -15,10 +15,10 @@ func _on_options_button_pressed():
 func _ready():
 	#This is temp janky method for presetting volume within each bus
 	#Needs to be replaced unless jank is the way
-	audio_manager.set_bus_volume(Busses.MUSIC, 0.3)
-	audio_manager.set_bus_volume(Busses.SFX, 0.3)
-	audio_manager.set_bus_volume(Busses.WEATHER, 0.5)
-	audio_manager.set_bus_volume(Busses.MASTER, 0.4)
+	AudioManager.set_bus_volume(Busses.MUSIC, 0.3)
+	AudioManager.set_bus_volume(Busses.SFX, 0.3)
+	AudioManager.set_bus_volume(Busses.WEATHER, 0.5)
+	AudioManager.set_bus_volume(Busses.MASTER, 0.4)
 	
-	audio_manager.play_group("BG_MUSIC", true, true, true)
-	audio_manager.play_group("CITY_SOUNDS", true, true, true)
+	AudioManager.play_group("BG_MUSIC", true, true, true)
+	AudioManager.play_group("CITY_SOUNDS", true, true, true)

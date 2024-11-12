@@ -27,8 +27,8 @@ func _ready():
 # Otherwise values past 1, will result in n*maximum volume limit (AKA: You going to blow out your ear drums)
 func convert_to_audio(slider, value):
 	var linear = value / 100
-	audio_manager.set_bus_volume(slider, linear)
-		
+	AudioManager.set_bus_volume(slider, linear)
+	
 func _on_back_button_pressed():
 	print("Back button pressed")
 	

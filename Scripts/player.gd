@@ -31,42 +31,15 @@ var wall_slide_speed := 100
 
 var no_movement := 0
 
-# Setting up player states
-var idle_ps := PlayerState.new(neutral, no_movement, no_movement, "idle")
-var sneak_ps := PlayerState.new(neutral, no_movement, no_movement, "sneak")
-
-var jump_ps := PlayerState.new(neutral, no_movement, jump_speed, "jump")
-var fall_ps := PlayerState.new(neutral, no_movement, fall_speed, "fall")
-var wall_slide_ps := PlayerState.new(neutral, no_movement, wall_slide_speed, "wall_slide")
-
-var left_walk_ps := PlayerState.new(left, walk_speed, no_movement, "walk")
-var left_sprint_ps := PlayerState.new(left, sprint_speed, no_movement, "sprint")
-var left_sneak_ps := PlayerState.new(left, sneak_speed, no_movement, "sneak")
-var right_walk_ps := PlayerState.new(right, walk_speed, no_movement, "walk")
-var right_sprint_ps := PlayerState.new(right, sprint_speed, no_movement, "sprint")
-var right_sneak_ps := PlayerState.new(right, sneak_speed, no_movement, "sneak")
-
-
+var player = PlayerState.new()
 
 func movement(delta):
 	var move_up = Input.is_action_just_pressed("move_up")
 	var move_down = Input.is_action_pressed("move_down")
 	var move_fast = Input.is_action_pressed("move_fast")
 	var left_right_movement = Input.get_axis("move_left","move_right")
-	if left_right_movement == left:
-		do_left_movement(move_fast, move_down)
-	elif left_right_movement == right:
-		do_right_movement(move_fast, move_down)
-	elif is_on_floor():
-		do_movement(idle_ps)
-	if move_up:
-		velocity.y = jump_ps.vertical_speed
-		animated_sprite.play(jump_ps.animation)
-		animated_sprite.flip_h = look_direction > 0
-	elif !is_on_floor():
-		velocity.y += fall_ps.vertical_speed * delta
-		animated_sprite.play(fall_ps.animation)
-		animated_sprite.flip_h = look_direction > 0
+	player.direction = left_right_movement
+	do_horizontal_movement(player, move_down, move_fast)
 
 func _physics_process(delta):
 	var is_grounded := is_on_floor()
@@ -79,7 +52,7 @@ func _physics_process(delta):
 		coyote_time_remaining -= delta
 	
 	movement(delta)
-	
+	print(velocity)
 	# JUMPING LOGIC TODO
 	#TODO: NEED TO TRACK WHEN THE PLAYER IS IN THE AIR AND DEPENDING ON + or - VELOCITY PLAY Animation
 	#TODO: make a big priority tree on what takes what priority when certain things effect the player, like idle, falling, moving, etc
@@ -105,29 +78,14 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-func do_movement(playerstate: PlayerState):
-	velocity.x = playerstate.direction * playerstate.horizontal_speed
-	animated_sprite.play(playerstate.animation)
-	look_direction = playerstate.direction
-	if playerstate.animation != "idle":
-		animated_sprite.flip_h = playerstate.direction > 0
-	
-
-func do_right_movement(move_fast, move_down):
-	if move_fast:
-		do_movement(right_sprint_ps)
-	elif move_down:
-		do_movement(right_sneak_ps)
+func do_horizontal_movement(playerstate: PlayerState, move_down, move_fast):
+	if move_down:
+		velocity.x = playerstate.direction * sneak_speed
+	elif move_fast:
+		velocity.x = playerstate.direction * sprint_speed
 	else:
-		do_movement(right_walk_ps)
+		velocity.x = playerstate.direction * walk_speed
 
-func do_left_movement(move_fast, move_down):
-	if move_fast:
-		do_movement(left_sprint_ps)
-	elif move_down:
-		do_movement(left_sneak_ps)
-	else:
-		do_movement(left_walk_ps)
 func get_wall_jump_direction() -> int:
 	if is_on_wall():
 		var collision = get_last_slide_collision()
