@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0fxy1tauod1p"
-path="res://.godot/imported/CatApexJump.png-a1d59d90428541e0f65dfeaa24174f70.ctex"
+path="res://.godot/imported/CatApexJump.png-a889bdaa09c21a3ee113689f3cc7a882.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PlayerSprites/CatApexJump.png"
-dest_files=["res://.godot/imported/CatApexJump.png-a1d59d90428541e0f65dfeaa24174f70.ctex"]
+source_file="res://Assets/PlayerSprites/Cat/Jump/CatApexJump.png"
+dest_files=["res://.godot/imported/CatApexJump.png-a889bdaa09c21a3ee113689f3cc7a882.ctex"]
 
 [params]
 
