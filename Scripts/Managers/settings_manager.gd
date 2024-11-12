@@ -10,8 +10,7 @@ var setting_config = ConfigFile.new()
 var config_path = "res://ProjectSettings/settings_config.cfg"
 var sound_section = "VOLUMES"
 
-var player_name = "player_name"
-var combine = ""
+var combine_name =  "player_name" + str(randi_range(1, 10000000))
 
 # audio_player.process_mode = Node.PROCESS_MODE_ALWAYS
 var volumes = {
@@ -26,8 +25,6 @@ func _ready():
 	sfx_slider.value = volumes["sfx"]
 	weather_slider.value = volumes["weather"]
 	master_slider.value = volumes["master"]
-	
-	combine = player_name + str(randi_range(1, 10000000))
 
 # Can only use values between 0.0 to 1.0 for linear value
 # Otherwise values past 1, will result in n*maximum volume limit (AKA: You going to blow out your ear drums)
@@ -36,10 +33,10 @@ func convert_to_audio(slider, value):
 	AudioManager.set_bus_volume(slider, linear)
 		
 func _on_save_button_pressed():
-	save_manager.save_game(combine, player)
+	SaveManager.save_game(combine_name, player)
 
 func _on_reload_button_pressed():
-	save_manager.load_game(combine, player)
+	SaveManager.load_game(combine_name, player)
 
 func _on_back_button_pressed():
 	print("Back button pressed")

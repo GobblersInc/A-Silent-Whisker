@@ -7,7 +7,7 @@ var complete_path: String
 var path: String
 var nodes: Variant
 
-func _init(init_name: String = "default", init_path: String = "res://User/Nodes/", init_nodes: Variant = ""):
+func _init(init_name: String = "default", init_path: String = "res://User/Saves/", init_nodes: Variant = ""):
 	self.save_name = init_name
 	self.path = init_path
 	self.nodes = init_nodes
