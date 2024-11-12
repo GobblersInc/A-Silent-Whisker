@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cei5sfoafsve1"
-path="res://.godot/imported/CatCrouch.png-a0a09fc9007f572b34c4648a9a4b79a5.ctex"
+uid="uid://dlek0mie7hqft"
+path="res://.godot/imported/PauseButton.PNG-6b323ff60f539974c3c1c6e3198f592c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PlayerSprites/CatCrouch.png"
-dest_files=["res://.godot/imported/CatCrouch.png-a0a09fc9007f572b34c4648a9a4b79a5.ctex"]
+source_file="res://Assets/UIButtons/PauseButton.PNG"
+dest_files=["res://.godot/imported/PauseButton.PNG-6b323ff60f539974c3c1c6e3198f592c.ctex"]
 
 [params]
 

@@ -1,53 +1,77 @@
-[gd_scene load_steps=40 format=4 uid="uid://c1ifcmjlefw85"]
+[gd_scene load_steps=41 format=4 uid="uid://c1ifcmjlefw85"]
 
 [ext_resource type="Texture2D" uid="uid://copjysytdr4ul" path="res://Assets/Parallax/back.png" id="1_sn3yr"]
 [ext_resource type="Texture2D" uid="uid://dxgfr41a5tlx5" path="res://Assets/Parallax/buildings.png" id="2_hj71v"]
 [ext_resource type="Texture2D" uid="uid://brtmrgp2g0lcp" path="res://Assets/Parallax/front.png" id="3_t0is6"]
-[ext_resource type="Texture2D" uid="uid://dqkd6ivpfvvsn" path="res://Assets/TileSheets/CyberSheetV1-1.png" id="4_xjfsf"]
+[ext_resource type="Texture2D" uid="uid://cxr7dbsj16hx8" path="res://Assets/TileSheets/tilesheet4x4streetsV3.png" id="4_yhlml"]
+[ext_resource type="Texture2D" uid="uid://do3hq8xipcq36" path="res://Assets/TileSheets/2tilesheet4x4streetsV1.png" id="5_8euk6"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="5_ug22v"]
 [ext_resource type="Texture2D" uid="uid://dmhscgdjn8j2t" path="res://Assets/PlayerSprites/CatNotStill.png" id="6_4np5s"]
-[ext_resource type="Texture2D" uid="uid://c4r37oe13yc76" path="res://Assets/PlayerSprites/CatStill.png" id="6_5g6uy"]
-[ext_resource type="Texture2D" uid="uid://dr0coeuln21d3" path="res://Assets/PlayerSprites/CatGoingDown.png" id="6_ertcw"]
+[ext_resource type="Texture2D" uid="uid://o70kvw6rfk1x" path="res://Assets/PlayerSprites/CatIdle.png" id="6_62buh"]
 [ext_resource type="Texture2D" uid="uid://dviccwueujdal" path="res://Assets/PlayerSprites/CatJump.png" id="7_uo13r"]
-[ext_resource type="Texture2D" uid="uid://dwhx8sy4teooy" path="res://Assets/PlayerSprites/CatCrouchWalk.png" id="8_r12sh"]
-[ext_resource type="Texture2D" uid="uid://r7wcomboirdm" path="res://Assets/PlayerSprites/CatRun.png" id="9_0cud6"]
-[ext_resource type="Texture2D" uid="uid://bobagtfl5pkj2" path="res://Assets/PlayerSprites/CatCrouch.png" id="10_ropj1"]
+[ext_resource type="Texture2D" uid="uid://baytxmioo8hnj" path="res://Assets/PlayerSprites/CatIdleCrouch.png" id="8_hwj3d"]
+[ext_resource type="Script" path="res://Scripts/Managers/ui_manager.gd" id="11_82m58"]
+[ext_resource type="Texture2D" uid="uid://dw5xnpw8umfpk" path="res://Assets/UIButtons/PauseButtonRedo.png" id="12_8ymk0"]
+[ext_resource type="Script" path="res://Scripts/Managers/settings_manager.gd" id="13_o43nh"]
+[ext_resource type="Material" uid="uid://b8rntfto8sibn" path="res://Assets/shaders/blur.tres" id="14_pd2sw"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rnfrn"]
-texture = ExtResource("4_xjfsf")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_376ax"]
+texture = ExtResource("4_yhlml")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -1, -16, -1)
-0:0/0/physics_layer_0/polygon_0/one_way = true
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -0.75, -16, -0.75)
 3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -1, -16, -1)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -0.75, -16, -0.75)
 3:0/0/physics_layer_0/polygon_0/one_way = true
-4:0/0 = 0
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-6:0/0 = 0
-6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -1, -16, -1)
-0:1/0/physics_layer_0/polygon_0/one_way = true
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -0.75, -16, -0.75)
 3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -1, -16, -1)
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 0.25, -16, 0.25)
 3:1/0/physics_layer_0/polygon_0/one_way = true
-4:1/0 = 0
-4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-5:1/0 = 0
-5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-6:1/0 = 0
-6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:2/0 = 0
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -6.75, -16, -6.75)
+3:2/0/physics_layer_0/polygon_0/one_way = true
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rorw2"]
+texture = ExtResource("5_8euk6")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -0.625, -16, -0.625)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -0.625, -16, -0.625)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -0.625, -16, -0.625)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, 2, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -0.625, -16, -0.625)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -0.625, -16, -0.625)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -0.625, -16, -0.625)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -0.75, 16, 16, 16, 16, -16, 16)
 0:2/0 = 0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:2/0 = 0
@@ -56,14 +80,6 @@ texture_region_size = Vector2i(32, 32)
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 3:2/0 = 0
 3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-4:2/0 = 0
-4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-5:2/0 = 0
-5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-6:2/0 = 0
-6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-7:2/0 = 0
-7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:3/0 = 0
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:3/0 = 0
@@ -72,136 +88,23 @@ texture_region_size = Vector2i(32, 32)
 2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 3:3/0 = 0
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-4:3/0 = 0
-4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-5:3/0 = 0
-5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-6:3/0 = 0
-6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-7:3/0 = 0
-7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-0:4/0 = 0
-0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-1:4/0 = 0
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-2:4/0 = 0
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-3:4/0 = 0
-3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-4:4/0 = 0
-4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-5:4/0 = 0
-5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-0:6/0 = 0
-0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -7.75, -16, -7.75)
-0:6/0/physics_layer_0/polygon_0/one_way = true
-1:6/0 = 0
-1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -7.75, -16, -7.75)
-1:6/0/physics_layer_0/polygon_0/one_way = true
-2:6/0 = 0
-2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -7.75, -16, -7.75)
-2:6/0/physics_layer_0/polygon_0/one_way = true
-3:6/0 = 0
-3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -7.75, -16, -7.75)
-3:6/0/physics_layer_0/polygon_0/one_way = true
-0:7/0 = 0
-0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -1, -16, -1)
-0:7/0/physics_layer_0/polygon_0/one_way = true
-1:7/0 = 0
-1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -1, -16, -1)
-1:7/0/physics_layer_0/polygon_0/one_way = true
-2:7/0 = 0
-2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -1, -16, -1)
-2:7/0/physics_layer_0/polygon_0/one_way = true
-0:8/0 = 0
-0:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -1, -16, -1)
-0:8/0/physics_layer_0/polygon_0/one_way = true
-1:8/0 = 0
-1:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -1, -16, -1)
-1:8/0/physics_layer_0/polygon_0/one_way = true
-2:8/0 = 0
-2:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -1, -16, -1)
-2:8/0/physics_layer_0/polygon_0/one_way = true
-0:9/0 = 0
-0:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-1:9/0 = 0
-1:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-2:9/0 = 0
-2:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-0:10/0 = 0
-0:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-1:10/0 = 0
-1:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-2:10/0 = 0
-2:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-9:0/size_in_atlas = Vector2i(2, 2)
-9:0/0 = 0
-11:0/size_in_atlas = Vector2i(2, 2)
-11:0/0 = 0
-13:0/size_in_atlas = Vector2i(2, 2)
-13:0/0 = 0
-15:0/size_in_atlas = Vector2i(2, 2)
-15:0/0 = 0
-11:4/0 = 0
-11:5/0 = 0
-11:6/0 = 0
-11:7/0 = 0
-16:4/0 = 0
-16:5/0 = 0
-16:6/0 = 0
-16:7/0 = 0
-10:4/size_in_atlas = Vector2i(1, 2)
-10:4/0 = 0
-9:4/size_in_atlas = Vector2i(1, 2)
-9:4/0 = 0
-9:6/size_in_atlas = Vector2i(1, 2)
-9:6/0 = 0
-10:6/size_in_atlas = Vector2i(1, 2)
-10:6/0 = 0
-12:7/size_in_atlas = Vector2i(2, 1)
-12:7/0 = 0
-14:7/size_in_atlas = Vector2i(2, 1)
-14:7/0 = 0
-14:5/size_in_atlas = Vector2i(2, 1)
-14:5/0 = 0
-12:5/size_in_atlas = Vector2i(2, 1)
-12:5/0 = 0
-15:3/size_in_atlas = Vector2i(2, 1)
-15:3/0 = 0
-17:3/size_in_atlas = Vector2i(2, 1)
-17:3/0 = 0
-14:2/size_in_atlas = Vector2i(1, 2)
-14:2/0 = 0
-13:2/size_in_atlas = Vector2i(1, 2)
-13:2/0 = 0
-12:2/size_in_atlas = Vector2i(1, 2)
-12:2/0 = 0
-11:2/size_in_atlas = Vector2i(1, 2)
-11:2/0 = 0
-10:2/size_in_atlas = Vector2i(1, 2)
-10:2/0 = 0
-9:2/size_in_atlas = Vector2i(1, 2)
-9:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_s6elk"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/2 = SubResource("TileSetAtlasSource_rnfrn")
+sources/0 = SubResource("TileSetAtlasSource_376ax")
+sources/1 = SubResource("TileSetAtlasSource_rorw2")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6lme"]
 size = Vector2(28, 26)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4n4b3"]
-atlas = ExtResource("6_ertcw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1rjv"]
+atlas = ExtResource("6_62buh")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5vpt3"]
-atlas = ExtResource("6_ertcw")
-region = Rect2(128, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_luux6"]
+atlas = ExtResource("6_62buh")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p434g"]
 atlas = ExtResource("7_uo13r")
@@ -239,41 +142,13 @@ region = Rect2(224, 0, 32, 32)
 atlas = ExtResource("7_uo13r")
 region = Rect2(256, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7jss"]
-atlas = ExtResource("8_r12sh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiph6"]
+atlas = ExtResource("8_hwj3d")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ccei6"]
-atlas = ExtResource("8_r12sh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7fw8"]
+atlas = ExtResource("8_hwj3d")
 region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_00l68"]
-atlas = ExtResource("9_0cud6")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qpf23"]
-atlas = ExtResource("9_0cud6")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mqb7c"]
-atlas = ExtResource("9_0cud6")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6xw02"]
-atlas = ExtResource("9_0cud6")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k6pmh"]
-atlas = ExtResource("9_0cud6")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cdnd2"]
-atlas = ExtResource("9_0cud6")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dknev"]
-atlas = ExtResource("9_0cud6")
-region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_54agk"]
 atlas = ExtResource("6_4np5s")
@@ -287,18 +162,10 @@ region = Rect2(0, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4n4b3")
+"texture": SubResource("AtlasTexture_v1rjv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5vpt3")
-}],
-"loop": false,
-"name": &"fall",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_5g6uy")
+"texture": SubResource("AtlasTexture_luux6")
 }],
 "loop": true,
 "name": &"idle",
@@ -338,40 +205,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r7jss")
+"texture": SubResource("AtlasTexture_fiph6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ccei6")
+"texture": SubResource("AtlasTexture_p7fw8")
 }],
 "loop": true,
 "name": &"sneak",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_00l68")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qpf23")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mqb7c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6xw02")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k6pmh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cdnd2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dknev")
-}],
-"loop": true,
-"name": &"sprint",
-"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -383,15 +224,37 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_ropj1")
-}],
-"loop": true,
-"name": &"wall_slide",
-"speed": 5.0
 }]
+
+[sub_resource type="SystemFont" id="SystemFont_jk4xf"]
+font_names = PackedStringArray("")
+font_weight = 900
+subpixel_positioning = 0
+oversampling = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_6wx77"]
+font = SubResource("SystemFont_jk4xf")
+font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_ph8yw"]
+font_names = PackedStringArray("")
+font_weight = 900
+subpixel_positioning = 0
+oversampling = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_vbvtj"]
+font = SubResource("SystemFont_ph8yw")
+font_size = 15
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_g41ag"]
+font_names = PackedStringArray("")
+font_weight = 700
+subpixel_positioning = 0
+oversampling = 3.0
 
 [sub_resource type="Environment" id="Environment_x2mid"]
 background_mode = 1
@@ -433,7 +296,7 @@ centered = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(234, 361)
-tile_map_data = PackedByteArray("AADu////AgABAAAAAADu/wAAAgADAAMAAADu/wEAAgADAAIAAADu/wIAAgAAAAMAAADv/wAAAgAFAAAAAADv/wEAAgACAAIAAADv/wIAAgABAAMAAADw/wAAAgAGAAEAAADw/wEAAgADAAIAAADw/wIAAgAAAAMAAADx////AgABAAEAAADx/wAAAgACAAMAAADx/wEAAgACAAIAAADx/wIAAgABAAMAAADy//7/AgAAAAoAAADy////AgAAAAQAAADy/wAAAgAHAAMAAADy/wEAAgAAAAQAAADy/wIAAgAAAAQAAADz//7/AgACAAoAAADz////AgAAAAQAAADz/wAAAgAHAAMAAADz/wEAAgAAAAQAAADz/wIAAgAAAAQAAAD0//7/AgABAAEAAAD0////AgAAAAQAAAD0/wAAAgAEAAIAAAD0/wEAAgAAAAQAAAD0/wIAAgAAAAQAAAD1//7/AgAEAAEAAAD1////AgACAAIAAAD1/wAAAgABAAMAAAD1/wEAAgAAAAQAAAD1/wIAAgAAAAQAAAD2//v/AgAAAAQAAAD2//z/AgAAAAQAAAD2//7/AgABAAAAAAD2////AgAAAAQAAAD2/wAAAgAAAAQAAAD2/wEAAgAAAAQAAAD2/wIAAgAAAAQAAAD3////AgABAAAAAAD3/wAAAgAAAAQAAAD3/wEAAgAAAAQAAAD3/wIAAgAAAAQAAAD4/wAAAgABAAAAAAD4/wEAAgAAAAQAAAD4/wIAAgAAAAQAAAD5/wAAAgAAAAoAAAD5/wEAAgAAAAQAAAD5/wIAAgAAAAQAAAD6/wAAAgABAAoAAAD6/wEAAgAAAAQAAAD6/wIAAgAAAAQAAAD7/wAAAgABAAkAAAD7/wEAAgAAAAQAAAD7/wIAAgAAAAQAAAD8/wAAAgABAAoAAAD8/wEAAgAAAAQAAAD8/wIAAgAAAAQAAAD9/wAAAgABAAoAAAD9/wEAAgAAAAQAAAD9/wIAAgAAAAQAAAD+/wAAAgABAAoAAAD+/wEAAgAAAAQAAAD+/wIAAgAAAAQAAAD//wAAAgABAAkAAAD//wEAAgAAAAQAAAD//wIAAgAAAAQAAAAAAAAAAgACAAoAAAAAAAEAAgAAAAQAAAAAAAIAAgAAAAQAAADe//7/AgABAAAAAADe////AgAAAAQAAADe/wAAAgAAAAQAAADe/wEAAgAAAAQAAADe/wIAAgAAAAQAAADf//7/AgABAAAAAADf////AgAAAAQAAADf/wAAAgAAAAQAAADf/wEAAgAAAAQAAADf/wIAAgAAAAQAAADg//n/AgACAAYAAADg//r/AgAAAAUAAADg//v/AgAAAAUAAADg//z/AgAAAAUAAADg//3/AgACAAUAAADg//7/AgABAAAAAADg////AgAAAAQAAADg/wAAAgAAAAQAAADg/wEAAgAAAAQAAADg/wIAAgAAAAQAAADh//7/AgABAAAAAADh////AgAAAAQAAADh/wAAAgAAAAQAAADh/wEAAgAAAAQAAADh/wIAAgAAAAQAAADi//7/AgABAAAAAADi////AgAAAAQAAADi/wAAAgAAAAQAAADi/wEAAgAAAAQAAADi/wIAAgAAAAQAAADj//v/AgAAAAgAAADj//z/AgABAAUAAADj//3/AgADAAUAAADj//7/AgABAAAAAADj////AgAAAAQAAADj/wAAAgAAAAQAAADj/wEAAgAAAAQAAADj/wIAAgAAAAQAAADk//v/AgABAAcAAADk//7/AgABAAAAAADk////AgAAAAQAAADk/wAAAgAAAAQAAADk/wEAAgAAAAQAAADk/wIAAgAAAAQAAADl//v/AgABAAcAAADl//7/AgABAAAAAADl////AgAAAAQAAADl/wAAAgAAAAQAAADl/wEAAgAAAAQAAADl/wIAAgAAAAQAAADm//v/AgACAAgAAADm//z/AgAAAAUAAADm//3/AgACAAUAAADm//7/AgABAAAAAADm////AgAAAAQAAADm/wAAAgAAAAQAAADm/wEAAgAAAAQAAADm/wIAAgAAAAQAAADn//7/AgABAAAAAADn////AgAAAAQAAADn/wAAAgAAAAQAAADn/wEAAgAAAAQAAADn/wIAAgAAAAQAAADo//7/AgACAAAAAADo////AgAEAAMAAADo/wAAAgAAAAIAAADo/wEAAgAGAAMAAADo/wIAAgAAAAMAAADp//7/AgAAAAkAAADp////AgAAAAQAAADp/wAAAgAAAAQAAADp/wEAAgAAAAQAAADp/wIAAgAFAAIAAADq//7/AgABAAkAAADq////AgAAAAQAAADq/wAAAgAAAAQAAADq/wEAAgACAAQAAADq/wIAAgAGAAIAAADr//7/AgACAAoAAADr////AgAAAAQAAADr/wAAAgACAAMAAADr/wEAAgACAAIAAADr/wIAAgABAAMAAADs//7/AgAAAAkAAADs////AgABAAQAAADs/wAAAgAHAAMAAADs/wEAAgAAAAQAAADs/wIAAgAAAAQAAADt//7/AgACAAkAAADt////AgAAAAQAAADt/wAAAgAHAAMAAADt/wEAAgAAAAQAAADt/wIAAgAAAAQAAAD2//j/AgAAAAQAAAD2//n/AgAAAAQAAAD2//r/AgAAAAQAAAD5//j/AgAAAAQAAAD5//n/AgAAAAQAAAD5//r/AgAAAAQAAAD5//v/AgAAAAQAAAD5//z/AgAAAAQAAAABAAAAAgABAAAAAAACAAAAAgABAAAAAAADAAAAAgABAAAAAAAEAAAAAgABAAAAAAAFAAAAAgABAAAAAAAGAAAAAgABAAAAAAAHAAAAAgABAAAAAAAIAAAAAgABAAAAAAAJAAAAAgABAAAAAAAKAAAAAgABAAAAAAALAAAAAgABAAAAAAAMAAAAAgABAAAAAAANAAAAAgABAAAAAAATAAAAAgABAAAAAAAUAAAAAgABAAAAAAAVAAAAAgABAAAAAAAWAAAAAgABAAAAAAASAAAAAgABAAAAAAARAAAAAgABAAAAAAAQAAAAAgABAAAAAAAPAAAAAgABAAAAAAAOAAAAAgABAAAAAAAXAAAAAgABAAAAAAAYAAAAAgABAAAAAAAZAAAAAgABAAAAAAAaAAAAAgABAAAAAAAbAAAAAgABAAAAAAAcAAAAAgABAAAAAAAdAAAAAgABAAAAAAAeAAAAAgABAAAAAAAfAAAAAgABAAAAAAAgAAAAAgABAAAAAAAhAAAAAgABAAAAAAAiAAAAAgABAAAAAAA=")
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAEAAAD+/wAAAAAAAAEAAAD9/wAAAAAAAAAAAAD8/wAAAAAAAAEAAAAGAAAAAQAAAAIAAAADAAAAAAAAAAEAAAD7//3/AAAAAAAAAAD7//7/AAAAAAMAAAD7////AAAAAAIAAAD7/wAAAAAAAAIAAAD+//7/AAADAAEAAAD7/wEAAAAAAAIAAAD8/wEAAAACAAMAAAD9/wEAAAAAAAIAAAD+/wEAAAACAAMAAAD//wEAAAAAAAIAAAAAAAAAAAABAAEAAAAAAAEAAAABAAIAAAAAAAIAAAABAAMAAAD//wIAAAAAAAMAAAD+/wIAAAAAAAMAAAD9/wIAAAAAAAMAAAD8/wIAAAAAAAMAAAD7/wIAAAAAAAMAAAD6/wIAAAAAAAMAAAD5/wIAAAAAAAMAAAD5/wEAAAACAAMAAAD5/wAAAAACAAMAAAD6/wAAAAACAAMAAAABAAAAAAAAAAEAAAACAAAAAAAAAAEAAAAEAAAAAAABAAAAAAAFAAAAAAAAAAEAAAAHAAAAAQABAAMAAAAIAAAAAQACAAMAAAAJAAAAAAAAAAEAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAEAAAAEAAEAAAADAAMAAAABAAEAAAAAAAIAAAACAAEAAAACAAMAAAADAAEAAAAAAAIAAAADAAIAAAAAAAIAAAACAAIAAAAAAAIAAAABAAIAAAAAAAIAAAD6/wEAAAACAAMAAAAFAAEAAAAAAAIAAAAGAAEAAAAAAAIAAAAHAAEAAAAAAAIAAAAIAAEAAAAAAAIAAAAJAAEAAAACAAMAAAAKAAEAAAACAAMAAAALAAEAAAAAAAIAAAAFAAIAAAAAAAIAAAAGAAIAAAAAAAIAAAAHAAIAAAAAAAIAAAAIAAIAAAAAAAIAAAAJAAIAAAACAAMAAAAKAAIAAAACAAMAAAALAAIAAAAAAAIAAAD6//7/AAAAAAMAAAD5//7/AAAAAAMAAAD4//7/AAAAAAMAAAD3//7/AAAAAAMAAAD2//7/AAAAAAMAAAD1//7/AAAAAAMAAAD0//7/AAAAAAMAAAD6//3/AAAAAAIAAAD6//z/AAAAAAEAAAD5//z/AAAAAAAAAAD4//z/AAAAAAEAAAD3//z/AAAAAAEAAAADAP3/AAACAAAAAAADAP7/AAACAAIAAAADAP//AAACAAIAAAAEAP3/AAADAAIAAAACAP3/AAADAAIAAAAIAP7/AAADAAEAAAAMAP//AAAAAAAAAAAMAAAAAAACAAMAAAAMAAEAAAAAAAIAAAAMAAIAAAAAAAIAAAD6////AAAAAAIAAAD5////AAAAAAIAAAD4////AAAAAAIAAAD5//3/AAACAAMAAAD4//3/AAAAAAIAAAD3//3/AAAAAAIAAAD2//3/AAACAAMAAAD1//3/AAAAAAIAAAD0//3/AAAAAAIAAADz//3/AAAAAAIAAAD3////AAAAAAIAAAD2////AAAAAAIAAAD1////AAAAAAIAAAD0////AAAAAAIAAADz//7/AAAAAAIAAADz////AAAAAAIAAAD4/wAAAAAAAAIAAAD4/wEAAAAAAAIAAAD3/wEAAAAAAAIAAAD2/wEAAAAAAAIAAAD1/wEAAAAAAAIAAAD0/wEAAAAAAAIAAADz/wEAAAAAAAIAAADz/wAAAAAAAAIAAAD0/wAAAAAAAAIAAAD1/wAAAAAAAAIAAAD2/wAAAAAAAAIAAAD3/wAAAAAAAAIAAAD0//z/AAAAAAAAAAD2//z/AAAAAAEAAAD1//z/AAAAAAEAAADz//z/AAAAAAEAAAD8//3/AAADAAEAAAD+//v/AAADAAAAAAABAPr/AAADAAAAAAAGAPr/AAADAAAAAAAKAPr/AAADAAAAAAALAPn/AAADAAIAAAAKAPj/AAADAAIAAAALAPf/AAADAAIAAAAGAPb/AAADAAAAAAACAPX/AAADAAAAAAD8//f/AAADAAAAAAD4//b/AAACAAEAAAD1//b/AQACAAAAAAD0//b/AQABAAEAAADz//b/AQABAAAAAADy//b/AQAAAAAAAAD4//f/AAACAAIAAAD4//j/AAACAAIAAAD4//n/AAACAAIAAAD4//r/AAACAAIAAAD4//v/AAACAAIAAAALAPr/AAADAAEAAAAKAPb/AAADAAIAAAAEAAIAAAABAAIAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAQAAAAMAAAAQAAAAAQABAAMAAAARAAAAAQABAAIAAAASAAAAAQABAAMAAAATAAAAAQABAAMAAAAUAAAAAQACAAMAAAAVAAAAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAaAAAAAQADAAIAAAAbAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAdAAAAAQAAAAMAAAAeAAAAAQABAAMAAAAfAAAAAQABAAMAAAAgAAAAAQABAAMAAAAhAAAAAQACAAMAAAANAAEAAAAAAAIAAAANAAIAAAAAAAIAAAANAAMAAAAAAAIAAAAOAAEAAAACAAMAAAAOAAIAAAACAAMAAAAOAAMAAAAAAAIAAAAPAAEAAAACAAMAAAAPAAIAAAACAAMAAAAPAAMAAAAAAAIAAAAQAAEAAAACAAMAAAAQAAIAAAACAAMAAAAQAAMAAAAAAAIAAAARAAEAAAAAAAIAAAARAAIAAAACAAMAAAARAAMAAAAAAAIAAAASAAEAAAAAAAIAAAASAAIAAAAAAAIAAAASAAMAAAAAAAIAAAATAAEAAAAAAAIAAAATAAIAAAACAAMAAAATAAMAAAAAAAIAAAAUAAEAAAAAAAIAAAAUAAIAAAAAAAIAAAAUAAMAAAAAAAIAAAAVAAEAAAAAAAIAAAAVAAIAAAAAAAIAAAAVAAMAAAAAAAIAAAAWAAEAAAAAAAIAAAAWAAIAAAACAAMAAAAWAAMAAAAAAAIAAAAXAAEAAAAAAAIAAAAXAAIAAAAAAAIAAAAXAAMAAAAAAAIAAAAYAAEAAAAAAAIAAAAYAAIAAAAAAAIAAAAYAAMAAAAAAAIAAAAZAAIAAAAAAAIAAAAZAAMAAAAAAAIAAAAaAAEAAAACAAMAAAAaAAIAAAACAAMAAAAaAAMAAAAAAAIAAAAbAAEAAAAAAAIAAAAbAAIAAAACAAMAAAAbAAMAAAAAAAIAAAAcAAEAAAAAAAIAAAAcAAIAAAAAAAIAAAAcAAMAAAACAAMAAAAdAAEAAAAAAAIAAAAdAAIAAAAAAAIAAAAdAAMAAAAAAAIAAAAeAAEAAAAAAAIAAAAeAAIAAAAAAAIAAAAeAAMAAAAAAAIAAAAfAAEAAAAAAAIAAAAfAAIAAAAAAAIAAAAfAAMAAAAAAAIAAAAgAAEAAAAAAAIAAAAgAAIAAAAAAAIAAAAgAAMAAAAAAAIAAAAhAAEAAAAAAAIAAAAhAAIAAAAAAAIAAAAhAAMAAAAAAAIAAAD2/wMAAAAAAAIAAAD2/wQAAAAAAAIAAAD2/wUAAAAAAAIAAAD2/wYAAAAAAAIAAAD3/wMAAAAAAAIAAAD3/wQAAAAAAAIAAAD3/wUAAAAAAAIAAAD3/wYAAAAAAAIAAAD4/wMAAAAAAAIAAAD4/wQAAAAAAAIAAAD4/wUAAAAAAAIAAAD4/wYAAAAAAAIAAAD5/wMAAAAAAAIAAAD5/wQAAAAAAAIAAAD5/wUAAAAAAAIAAAD5/wYAAAAAAAIAAAD6/wMAAAAAAAIAAAD6/wQAAAAAAAIAAAD6/wUAAAAAAAIAAAD6/wYAAAAAAAIAAAD7/wMAAAAAAAIAAAD7/wQAAAAAAAIAAAD7/wUAAAAAAAIAAAD7/wYAAAAAAAIAAAD8/wMAAAAAAAIAAAD8/wQAAAACAAMAAAD8/wUAAAAAAAIAAAD8/wYAAAAAAAIAAAD9/wMAAAAAAAIAAAD9/wQAAAACAAMAAAD9/wUAAAACAAMAAAD9/wYAAAAAAAIAAAD+/wMAAAAAAAIAAAD+/wQAAAAAAAIAAAD+/wUAAAACAAMAAAD+/wYAAAACAAMAAAD//wMAAAAAAAIAAAD//wQAAAAAAAIAAAD//wUAAAAAAAIAAAD//wYAAAACAAMAAAAAAAMAAAAAAAIAAAAAAAQAAAAAAAIAAAAAAAUAAAACAAMAAAAAAAYAAAACAAMAAAABAAMAAAAAAAIAAAABAAQAAAAAAAIAAAABAAUAAAAAAAIAAAABAAYAAAAAAAIAAAACAAMAAAAAAAIAAAACAAQAAAACAAMAAAACAAUAAAAAAAIAAAACAAYAAAAAAAIAAAADAAMAAAACAAMAAAADAAQAAAAAAAIAAAADAAUAAAAAAAIAAAADAAYAAAACAAMAAAAEAAMAAAAAAAIAAAAEAAQAAAAAAAIAAAAEAAUAAAAAAAIAAAAEAAYAAAAAAAIAAAAFAAMAAAACAAMAAAAFAAQAAAAAAAIAAAAFAAUAAAAAAAIAAAAFAAYAAAAAAAIAAAAGAAMAAAACAAMAAAAGAAQAAAAAAAIAAAAGAAUAAAACAAMAAAAGAAYAAAAAAAIAAAAHAAMAAAACAAMAAAAHAAQAAAAAAAIAAAAHAAUAAAACAAMAAAAHAAYAAAAAAAIAAAAIAAMAAAACAAMAAAAIAAQAAAAAAAIAAAAIAAUAAAACAAMAAAAIAAYAAAAAAAIAAAAJAAMAAAAAAAIAAAAJAAQAAAAAAAIAAAAJAAUAAAAAAAIAAAAJAAYAAAAAAAIAAAAKAAMAAAAAAAIAAAAKAAQAAAAAAAIAAAAKAAUAAAACAAMAAAAKAAYAAAAAAAIAAAALAAMAAAAAAAIAAAALAAQAAAAAAAIAAAALAAUAAAAAAAIAAAALAAYAAAAAAAIAAAAMAAMAAAAAAAIAAAAMAAQAAAAAAAIAAAAMAAUAAAACAAMAAAAMAAYAAAAAAAIAAADw/wIAAAAAAAIAAADw/wMAAAAAAAIAAADw/wQAAAAAAAIAAADw/wUAAAAAAAIAAADw/wYAAAAAAAIAAADx/wIAAAAAAAIAAADx/wMAAAAAAAIAAADx/wQAAAAAAAIAAADx/wUAAAAAAAIAAADx/wYAAAAAAAIAAADy/wIAAAAAAAIAAADy/wMAAAAAAAIAAADy/wQAAAAAAAIAAADy/wUAAAAAAAIAAADy/wYAAAAAAAIAAADz/wIAAAAAAAIAAADz/wMAAAAAAAIAAADz/wQAAAAAAAIAAADz/wUAAAAAAAIAAADz/wYAAAAAAAIAAAD0/wIAAAAAAAIAAAD0/wMAAAAAAAIAAAD0/wQAAAAAAAIAAAD0/wUAAAAAAAIAAAD0/wYAAAAAAAIAAAD1/wIAAAAAAAIAAAD1/wMAAAAAAAIAAAD1/wQAAAAAAAIAAAD1/wUAAAAAAAIAAAD1/wYAAAAAAAIAAAD2/wIAAAAAAAIAAAD3/wIAAAAAAAIAAAD4/wIAAAAAAAIAAAAIAAgAAAACAAMAAAAJAAgAAAACAAMAAAANAAgAAAACAAMAAAAQAAgAAAACAAMAAAAQAAcAAAACAAMAAAAPAAYAAAACAAMAAAAOAAYAAAACAAMAAAANAAUAAAACAAMAAAD4//X/AAACAAIAAAD4//T/AAACAAIAAAD4//P/AAACAAAAAADx//X/AAADAAIAAADw//T/AAADAAIAAADv//P/AAADAAIAAADz//L/AAADAAAAAAD7//L/AAADAAEAAAD9//H/AAADAAIAAAD+//H/AAADAAIAAAD///H/AAADAAIAAAAaAP//AQADAAEAAAAZAP//AQADAAAAAADy//f/AAACAAIAAADy//j/AAACAAIAAADy//n/AAACAAIAAADy//r/AAACAAIAAADy//v/AAACAAIAAAD1//f/AAACAAIAAAD1//j/AAACAAIAAAD1//n/AAACAAIAAAD1//r/AAACAAIAAAD1//v/AAACAAIAAAAYAP//AAADAAIAAAAYAP7/AQADAAEAAAAXAP7/AQADAAAAAAAZAAEAAAAAAAIAAAAZAAAAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_s6elk")
 
 [node name="Player" type="CharacterBody2D" parent="."]
@@ -450,7 +313,170 @@ shape = SubResource("RectangleShape2D_g6lme")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(-1, 8)
 sprite_frames = SubResource("SpriteFrames_r7t5s")
-animation = &"fall"
+animation = &"jump"
+
+[node name="OverlayUIControl" type="Control" parent="Player"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -256.0
+offset_top = -194.0
+offset_right = 257.0
+offset_bottom = 93.0
+script = ExtResource("11_82m58")
+
+[node name="ButtonMarginContainer" type="MarginContainer" parent="Player/OverlayUIControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 482.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = -259.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseButton" type="Button" parent="Player/OverlayUIControl/ButtonMarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Player/OverlayUIControl/ButtonMarginContainer/PauseButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_8ymk0")
+expand_mode = 1
+
+[node name="SettingsControl" type="Control" parent="Player/OverlayUIControl"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_o43nh")
+
+[node name="BlurColorRect" type="ColorRect" parent="Player/OverlayUIControl/SettingsControl"]
+material = ExtResource("14_pd2sw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsBackground" type="TextureRect" parent="Player/OverlayUIControl/SettingsControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 211.0
+offset_top = -1.0
+offset_right = -203.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -238.5
+offset_top = 2.0
+offset_right = 252.5
+offset_bottom = 303.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="SettingsLabel" type="Label" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Options Menu"
+label_settings = SubResource("LabelSettings_6wx77")
+
+[node name="SVBoxContainer" type="VBoxContainer" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 14
+
+[node name="MasterLabel" type="Label" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Master"
+label_settings = SubResource("LabelSettings_vbvtj")
+
+[node name="MasterHSlider" type="HSlider" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Music"
+label_settings = SubResource("LabelSettings_vbvtj")
+
+[node name="MusicHSlider" type="HSlider" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+
+[node name="SfxLabel" type="Label" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SFX"
+label_settings = SubResource("LabelSettings_vbvtj")
+
+[node name="SfxHSlider" type="HSlider" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+
+[node name="WeatherLabel" type="Label" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Weather"
+label_settings = SubResource("LabelSettings_vbvtj")
+
+[node name="WeatherHSlider" type="HSlider" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer"]
+layout_mode = 2
+
+[node name="BVBoxContainer" type="VBoxContainer" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+
+[node name="BackButton" type="Button" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_g41ag")
+theme_override_font_sizes/font_size = 15
+text = "Exit Options"
+
+[node name="ExitButton" type="Button" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("SystemFont_g41ag")
+theme_override_font_sizes/font_size = 15
+text = "Exit Game"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x2mid")
+
+[connection signal="pressed" from="Player/OverlayUIControl/ButtonMarginContainer/PauseButton" to="Player/OverlayUIControl" method="_Pause"]
+[connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MasterHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_master_h_slider_value_changed"]
+[connection signal="drag_ended" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_music_h_slider_drag_ended"]
+[connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_music_h_slider_value_changed"]
+[connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/SfxHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_sfx_h_slider_value_changed"]
+[connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/WeatherHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_weather_h_slider_value_changed"]
+[connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl" method="_Unpause"]
+[connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl/SettingsControl" method="_on_back_button_pressed"]
+[connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/ExitButton" to="Player/OverlayUIControl/SettingsControl" method="_on_exit_button_pressed"]

@@ -128,3 +128,16 @@ func do_left_movement(move_fast, move_down):
 		do_movement(left_sneak_ps)
 	else:
 		do_movement(left_walk_ps)
+func get_wall_jump_direction() -> int:
+	if is_on_wall():
+		var collision = get_last_slide_collision()
+		if collision:
+			if collision.get_normal().x > 0:
+				return -1
+			elif collision.get_normal().x < 0:
+				return 1
+	return 0
+
+
+func _on_button_pressed():
+	pass # Replace with function body.
