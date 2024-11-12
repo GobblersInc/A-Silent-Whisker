@@ -19,6 +19,6 @@ func _ready():
 	audio_manager.set_bus_volume(Busses.SFX, 0.3)
 	audio_manager.set_bus_volume(Busses.WEATHER, 0.5)
 	audio_manager.set_bus_volume(Busses.MASTER, 0.4)
-	
+	#
 	audio_manager.play_group("BG_MUSIC", true, true, true)
-	audio_manager.play_group("CITY_SOUNDS", true, true, true)
+	#audio_manager.play_group("CITY_SOUNDS", true, true, true)
