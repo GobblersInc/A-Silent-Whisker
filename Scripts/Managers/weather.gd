@@ -7,7 +7,6 @@ extends Node
 @onready var sun_effect: WorldEnvironment = $"../Sun"
 var current_weather: String
 var previous_weather: String
-var stream_player: AudioStreamPlayer
 
 func _ready():
 	randomize()
@@ -42,13 +41,13 @@ func weather_sound_select():
 		stop_weather_sound()
 		match current_weather:
 			Weather_Types.RAIN:
-				stream_player = AudioManager.play_group("WEATHER_RAIN", true, true, true)
+				AudioManager.play_group("WEATHER_RAIN", true, true, true)
 			Weather_Types.SNOW:
-				stream_player = AudioManager.play_group("WEATHER_SNOW", true, true, true)
+				AudioManager.play_group("WEATHER_SNOW", true, true, true)
 			Weather_Types.SUN:
-				stream_player = AudioManager.play_group("CITY_SOUNDS", true, true, true)
+				AudioManager.play_group("CITY_SOUNDS", true, true, true)
 			Weather_Types.WIND:
-				stream_player = AudioManager.play_group("WEATHER_WIND", true, true, true)
+				AudioManager.play_group("WEATHER_WIND", true, true, true)
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
@@ -107,8 +106,13 @@ func stop_weather_anim():
 			tween.parallel().tween_property(sun_effect.environment, "glow_intensity", 0.0, 3)
 
 func stop_weather_sound():
-	if stream_player != null:
-		var tween = get_tree().create_tween()
-		tween.tween_property(stream_player,"volume_db", -80.0, 4)
-		await tween.finished
-		#currently not fading out of sound.
+	match previous_weather:
+		Weather_Types.RAIN:
+			AudioManager.stop_group("WEATHER_RAIN", true)
+		Weather_Types.SNOW:
+			AudioManager.stop_group("WEATHER_SNOW", true)
+		Weather_Types.SUN:
+			AudioManager.stop_group("CITY_SOUNDS", true)
+		Weather_Types.WIND:
+			AudioManager.stop_group("WEATHER_WIND", true)
+	#currently not fading out of sound.

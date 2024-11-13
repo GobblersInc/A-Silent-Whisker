@@ -18,9 +18,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-AudioManager="*res://Scripts/Sound/audio_manager.gd"
 SaveManager="*res://Scripts/Managers/save_manager.gd"
 InputManager="*res://Scripts/Managers/input_manager.gd"
+AudioManager="*res://Scripts/Sound/audio_manager.gd"
+AudioPlayerPool="*res://Scripts/Sound/player_pool.gd"
 
 [display]
 
