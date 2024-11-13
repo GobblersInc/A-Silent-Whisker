@@ -719,7 +719,7 @@ angular_velocity_min = -12.19
 angular_velocity_max = 182.54
 radial_velocity_min = -1.00002
 radial_velocity_max = -1.00002
-gravity = Vector3(-45, 80, 0)
+gravity = Vector3(-45, 70, 0)
 tangential_accel_min = -3.0
 tangential_accel_max = 3.0
 damping_min = 5.0
@@ -732,9 +732,8 @@ turbulence_noise_strength = 0.1
 turbulence_noise_scale = 0.8
 turbulence_noise_speed_random = 0.0
 turbulence_influence_min = 0.02
-turbulence_influence_max = 0.08
 collision_mode = 1
-collision_friction = 1.0
+collision_friction = 0.9
 collision_bounce = 0.0
 
 [sub_resource type="Curve" id="Curve_1d4hf"]
@@ -847,7 +846,8 @@ fill_to = Vector2(0, 1)
 
 [sub_resource type="Environment" id="Environment_7ttuf"]
 background_mode = 3
-glow_intensity = 0.88
+glow_enabled = true
+glow_intensity = 0.0
 glow_strength = 0.9
 glow_blend_mode = 0
 glow_hdr_threshold = 0.0
@@ -941,15 +941,15 @@ animation = &"idle"
 
 [node name="Snow" type="GPUParticles2D" parent="Player"]
 position = Vector2(0, -275)
-emitting = false
-amount = 500
+amount = 2000
+amount_ratio = 0.0
 process_material = SubResource("ParticleProcessMaterial_xpafo")
-lifetime = 8.0
+lifetime = 8.5
 
 [node name="Rain" type="GPUParticles2D" parent="Player"]
 position = Vector2(0, -275)
-emitting = false
-amount = 500
+amount = 2000
+amount_ratio = 0.0
 process_material = SubResource("ParticleProcessMaterial_5oh1t")
 lifetime = 1.5
 trail_enabled = true
@@ -957,11 +957,11 @@ trail_lifetime = 0.03
 
 [node name="Wind" type="GPUParticles2D" parent="Player"]
 position = Vector2(336, -94)
-emitting = false
-amount = 2
+amount = 50
+amount_ratio = 0.0
 process_material = SubResource("ParticleProcessMaterial_fugeq")
 texture = SubResource("GradientTexture2D_xhjhs")
-lifetime = 6.0
+lifetime = 12.0
 randomness = 0.5
 trail_enabled = true
 trail_lifetime = 0.6
