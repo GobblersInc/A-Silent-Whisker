@@ -1,7 +1,7 @@
 extends Control
 
 @onready var _SettingsScreen = $SettingsControl
-@onready var _Player = $Player
+@onready var _Player = $".."
 
 var combine_name =  "player_name" + str(randi_range(1, 10000000))
 
