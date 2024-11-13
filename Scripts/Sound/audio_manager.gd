@@ -1,23 +1,14 @@
 extends Node
 
+@onready var _busses: Busses = Busses.new()
+
 var _audio_definitions: Dictionary = {}
-var _player_pool: Array = []
-var _audio_groups: Dictionary = {}
+var _audio_groups: Array[AudioGroup] = []
 
 var _path_to_audio_definitions: String = "res://Resources/Configurations/audio_definitions.json"
-const _POOL_SIZE: int = 25  # Define the initial size of the player pool
 
 func _ready():
 	_load_audio_definitions(_path_to_audio_definitions)
-	_initialize_player_pool(_POOL_SIZE)
-
-# Initialize a pool of AudioStreamPlayers
-func _initialize_player_pool(size: int):
-	for i in range(size):
-		var player = AudioStreamPlayer.new()
-		add_child(player)
-		player.stop()  # Ensure player is in a stopped state
-		_player_pool.append(player)
 
 # Load definitions from JSON
 func _load_audio_definitions(file_path: String):
@@ -40,113 +31,47 @@ func _load_audio_definitions(file_path: String):
 func _get_audio_definition(audio_name: String) -> AudioDefinition:
 	return _audio_definitions.get(audio_name, null)
 
-# Get an available AudioStreamPlayer from the pool or create a new one
-func _get_audio_player() -> AudioStreamPlayer:
-	if _player_pool.size() > 0:
-		return _player_pool.pop_back()
-	else:
-		var player = AudioStreamPlayer.new()
-		add_child(player)
-		return player
-
-# Return an AudioStreamPlayer to the pool
-func _release_audio_player(player: AudioStreamPlayer):
-	player.stop()
-	player.stream = null  # Clear the stream to avoid memory leaks
-	if not _player_pool.has(player):
-		_player_pool.append(player)
-
-# Play sound by audio_name
-func _setup_audio_stream_player(audio_name: String, player: AudioStreamPlayer) -> AudioStreamPlayer:
-	var audio_def: AudioDefinition = _get_audio_definition(audio_name)
-	if audio_def:
-		player.stream = audio_def.get_stream()
-		player.bus = audio_def.bus
-		return player
-	push_error("Audio not found: %s" % audio_name)
-	return null
-
-# Handle player finishing and return it to the pool
-func _on_player_finished(player: AudioStreamPlayer, should_loop: bool = false):
-	if should_loop:
-		player.play()
-	else:
-		player.finished.disconnect(_on_player_finished)
-		_release_audio_player(player)
-
 # Get all sounds by group
 func _get_sounds_by_group(group_name: String) -> Array:
 	return _audio_definitions.values().filter(func(audio_def): return audio_def.group == group_name)
 
-# Play the next sound in the group
-func _play_next_in_group(audio_player: AudioStreamPlayer, audio_group: AudioGroup, group_name: String):
-	if audio_group.current_playlist.is_empty():
-		if audio_group.repeat:
-			audio_group.reset_playlist()
-			if audio_group.should_be_random:
-				audio_group.current_playlist.shuffle()
-		else:
-			audio_player.finished.disconnect(_on_group_finished)
-			_release_audio_player(audio_player)
-			return
-
-	var selected_sound: AudioDefinition = audio_group.current_playlist.pop_front()
-	_setup_audio_stream_player(selected_sound.name, audio_player)
-	audio_player.finished.connect(_on_group_finished.bind(audio_player, audio_group, group_name))
-	audio_player.play()
-
-# Handle when a sound finishes playing
-func _on_group_finished(audio_player: AudioStreamPlayer, audio_group: AudioGroup, group_name: String):
-	audio_player.finished.disconnect(_on_group_finished)
-
-	if audio_group.current_playlist.size() > 0 or audio_group.repeat:
-		_play_next_in_group(audio_player, audio_group, group_name)
-	else:
-		_release_audio_player(audio_player)
-
 # Set bus volume
 func set_bus_volume(bus_name: String, volume: float):
-	var bus_index: int = AudioServer.get_bus_index(bus_name)
-	if bus_index >= 0:
-		AudioServer.set_bus_volume_db(bus_index, linear_to_db(volume))
-	else:
-		push_error("Bus not found: %s" % bus_name)
-
-# Stop and free a sound
-func stop_sound(player: AudioStreamPlayer):
-	if player:
-		player.stop()
-		_release_audio_player(player)
-
-func stop_all_sounds():
-	for child in get_children():
-		if child is AudioStreamPlayer:
-			stop_sound(child)
-
-func play_single_sound(audio_name: String, should_loop: bool = false) -> AudioStreamPlayer:
-	var player: AudioStreamPlayer = _setup_audio_stream_player(audio_name, _get_audio_player())
-	player.finished.connect(_on_player_finished.bind(player, should_loop))
-	player.play()
-	return player
-
-# Play a group of sounds with options for looping, randomizing, and playing the whole group
-func play_group(group_name: String, should_loop: bool = false, play_whole_group: bool = false, should_randomize: bool = false) -> AudioStreamPlayer:
-	var sounds: Array = _get_sounds_by_group(group_name)
-	if sounds.is_empty():
-		push_error("No sounds found for group: %s" % group_name)
-		return null
-
-	# Create or update the AudioGroup
-	var audio_group: AudioGroup = AudioGroup.new(sounds, play_whole_group, should_randomize, should_loop)
-	_audio_groups[group_name] = audio_group
-
-	# Use a single AudioStreamPlayer for the group
-	var audio_player: AudioStreamPlayer = _get_audio_player()
+	_busses.set_bus_volume(bus_name, volume)
 	
-	# Shuffle playlist if randomize is enabled
-	if should_randomize:
-		audio_group.current_playlist.shuffle()
+func play_sound(sound_name: String, should_loop: bool = false):
+	var audio_definition: AudioDefinition = _get_audio_definition(sound_name)
+	var audio_definition_array: Array = [audio_definition]
+	var audio_group = AudioGroup.new(sound_name, AudioStreamManager.new(AudioPlayerPool.get_player()), Playlist.new(audio_definition_array, false, false, should_loop))
+	_audio_groups.append(audio_group)
 	
-	# Start playback
-	_play_next_in_group(audio_player, audio_group, group_name)
-	return audio_player
+	audio_group.play()
+	
+	return audio_group
+
+func play_group(group_name: String, should_play_all_group: bool, should_be_random: bool, should_loop: bool):
+	var audio_group_array: Array = _get_sounds_by_group(group_name)
+	var audio_group = AudioGroup.new(group_name, AudioStreamManager.new(AudioPlayerPool.get_player()), Playlist.new(audio_group_array, should_play_all_group, should_be_random, should_loop))
+	
+	_audio_groups.append(audio_group)
+	
+	audio_group.play()
+	
+	return audio_group
+
+func stop_group(group_name: String, stop_all: bool):
+	for i in range(_audio_groups.size()):
+		var audio_group = _audio_groups[i]
+		
+		# Check if the group's name matches the specified group name
+		if audio_group.group_name == group_name:
+			# Dispose of the player in the AudioStreamManager
+			audio_group.audio_stream_manager.dispose_audio_player()
+
+			# Remove the group from the _audio_groups list
+			_audio_groups.remove_at(i)
+			i -= 1  # Adjust index after removal
+
+			# If stop_all is false, stop after the first match
+			if not stop_all:
+				break
