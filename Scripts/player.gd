@@ -29,7 +29,7 @@ var no_movement := 0
 var player = PlayerState.new()
 
 var jump_time := 0.0
-var max_hop := .16
+var max_hop := .2
 
 var animation_tween: Tween
 
@@ -68,6 +68,7 @@ func movement():
 		if move_down:
 			velocity.x = player.direction * sneak_speed
 			player.animation = "sneak"
+			hitbox.transform
 		elif move_fast:
 			velocity.x = player.direction * sprint_speed
 			player.animation = "sprint"
