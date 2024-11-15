@@ -973,7 +973,6 @@ trail_section_subdivisions = 6
 environment = SubResource("Environment_7ttuf")
 
 [node name="OverlayUIControl" type="Control" parent="Player"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -256.0
