@@ -31,7 +31,7 @@ var player = PlayerState.new()
 var jump_time := 0.0
 var max_hop := .2
 
-var animation_tween: Tween
+var last_moved_direction := 0
 
 func _physics_process(delta):
 	var is_grounded := is_on_floor()
@@ -50,6 +50,7 @@ func _physics_process(delta):
 	
 	is_wall_sliding = false
 	if is_touching_wall and not is_grounded and velocity.y > 0:
+		velocity.x = last_moved_direction
 		is_wall_sliding = true
 		velocity.y = min(velocity.y, wall_slide_speed)
 		if wall_jumps_remaining > 0:
@@ -65,6 +66,7 @@ func movement():
 	var left_right_movement = Input.get_axis("move_left","move_right")
 	player.direction = left_right_movement
 	if player.direction != 0:
+		last_moved_direction = player.direction
 		if move_down:
 			velocity.x = player.direction * sneak_speed
 			player.animation = "sneak"
