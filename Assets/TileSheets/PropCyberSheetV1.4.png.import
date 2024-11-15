@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cleqp2g7f1tgp"
-path="res://.godot/imported/PropCyberSheetV1.3.png-426effe624de878443670d4192e821bf.ctex"
+uid="uid://ccrd2yejnxwbg"
+path="res://.godot/imported/PropCyberSheetV1.4.png-610ca7e777f41f1baedfa11357343364.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TileSheets/PropCyberSheetV1.3.png"
-dest_files=["res://.godot/imported/PropCyberSheetV1.3.png-426effe624de878443670d4192e821bf.ctex"]
+source_file="res://Assets/TileSheets/PropCyberSheetV1.4.png"
+dest_files=["res://.godot/imported/PropCyberSheetV1.4.png-610ca7e777f41f1baedfa11357343364.ctex"]
 
 [params]
 

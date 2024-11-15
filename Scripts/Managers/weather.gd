@@ -79,7 +79,7 @@ func snow():
 func sun():
 	if current_weather != previous_weather:
 		var tween = get_tree().create_tween()
-		tween.tween_property(sun_effect.environment, "glow_intensity", randf_range(0.50, 1.00), 3)
+		tween.tween_property(sun_effect.environment, "glow_intensity", randf_range(0.50, 0.69), 3)
 	
 func wind():
 	if current_weather != previous_weather:
