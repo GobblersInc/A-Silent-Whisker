@@ -25,5 +25,3 @@ func load_game(load_name: String, player_node: CharacterBody2D):
 	var temp_object = Save.new(load_name)
 	var player_data = temp_object.load_from_file()
 	player_node.global_position = player_data
-	
-	
