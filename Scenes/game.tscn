@@ -17,6 +17,14 @@
 [ext_resource type="Material" uid="uid://b8rntfto8sibn" path="res://Assets/shaders/blur.tres" id="14_pd2sw"]
 [ext_resource type="Script" path="res://Scripts/Managers/weather.gd" id="15_7paqb"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7r18i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fhdrb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k75hy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_432yb"]
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1bp0e"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 0, -16, 0)
 
@@ -549,6 +557,8 @@ sources/3 = SubResource("TileSetAtlasSource_1bahc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6lme"]
 size = Vector2(16, 23)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oto2r"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hs21m"]
 atlas = ExtResource("7_gnyoe")
 region = Rect2(0, 0, 32, 32)
@@ -847,12 +857,13 @@ fill_to = Vector2(0, 1)
 
 [sub_resource type="Environment" id="Environment_7ttuf"]
 background_mode = 3
-glow_enabled = true
-glow_intensity = 0.0
+ssr_fade_in = 0.0568394
+glow_intensity = 0.25
 glow_strength = 0.9
 glow_blend_mode = 0
 glow_hdr_threshold = 0.0
 glow_hdr_scale = 1.48
+adjustment_enabled = true
 
 [sub_resource type="SystemFont" id="SystemFont_jk4xf"]
 font_names = PackedStringArray("")
@@ -887,6 +898,9 @@ oversampling = 3.0
 [node name="Game" type="Node2D"]
 script = ExtResource("1_d287d")
 
+[node name="CheatControlNode" type="Node" parent="."]
+script = ExtResource("2_02vv8")
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -895,6 +909,7 @@ motion_scale = Vector2(0.4, 1)
 motion_mirroring = Vector2(864, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+material = SubResource("ShaderMaterial_7r18i")
 scale = Vector2(3, 3)
 texture = ExtResource("1_sn3yr")
 centered = false
@@ -905,6 +920,7 @@ motion_scale = Vector2(0.6, 1)
 motion_mirroring = Vector2(864, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+material = SubResource("ShaderMaterial_fhdrb")
 scale = Vector2(3, 3)
 texture = ExtResource("2_hj71v")
 centered = false
@@ -915,6 +931,7 @@ motion_scale = Vector2(0.8, 1)
 motion_mirroring = Vector2(864, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+material = SubResource("ShaderMaterial_k75hy")
 scale = Vector2(3, 3)
 texture = ExtResource("3_t0is6")
 centered = false
@@ -936,20 +953,21 @@ position = Vector2(-1, 12.5)
 shape = SubResource("RectangleShape2D_g6lme")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+material = SubResource("ShaderMaterial_oto2r")
 position = Vector2(-1, 8)
 sprite_frames = SubResource("SpriteFrames_r7t5s")
 animation = &"idle"
 
 [node name="Snow" type="GPUParticles2D" parent="Player"]
 position = Vector2(0, -275)
-amount = 2000
+amount = 3000
 amount_ratio = 0.0
 process_material = SubResource("ParticleProcessMaterial_xpafo")
 lifetime = 8.5
 
 [node name="Rain" type="GPUParticles2D" parent="Player"]
 position = Vector2(0, -275)
-amount = 2000
+amount = 3000
 amount_ratio = 0.0
 process_material = SubResource("ParticleProcessMaterial_5oh1t")
 lifetime = 1.5
@@ -958,7 +976,7 @@ trail_lifetime = 0.03
 
 [node name="Wind" type="GPUParticles2D" parent="Player"]
 position = Vector2(336, -94)
-amount = 50
+amount = 100
 amount_ratio = 0.0
 process_material = SubResource("ParticleProcessMaterial_fugeq")
 texture = SubResource("GradientTexture2D_xhjhs")
@@ -1025,9 +1043,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -245.5
-offset_top = -155.0
+offset_top = -159.5
 offset_right = 245.5
-offset_bottom = 155.0
+offset_bottom = 170.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 32
@@ -1122,6 +1140,16 @@ theme_override_fonts/font = SubResource("SystemFont_g41ag")
 theme_override_font_sizes/font_size = 15
 text = "Exit Game"
 
+[node name="CheatEntry" type="LineEdit" parent="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer"]
+layout_mode = 2
+placeholder_text = "Code Entry"
+alignment = 1
+max_length = 15
+context_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+
 [node name="WeatherControlNode" type="Node" parent="Player"]
 script = ExtResource("15_7paqb")
 
@@ -1135,3 +1163,4 @@ script = ExtResource("15_7paqb")
 [connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl" method="_Unpause"]
 [connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/BackButton" to="Player/OverlayUIControl/SettingsControl" method="_on_back_button_pressed"]
 [connection signal="pressed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/ExitButton" to="Player/OverlayUIControl/SettingsControl" method="_on_exit_button_pressed"]
+[connection signal="text_submitted" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/BVBoxContainer/CheatEntry" to="CheatControlNode" method="_on_cheat_entry_text_submitted"]
