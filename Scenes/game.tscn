@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://r7wcomboirdm" path="res://Assets/PlayerSprites/Cat/Run/CatRun.png" id="10_dahx2"]
 [ext_resource type="Script" path="res://Scripts/Managers/ui_manager.gd" id="11_82m58"]
 [ext_resource type="Script" path="res://Scripts/Managers/settings_manager.gd" id="13_o43nh"]
-[ext_resource type="Material" uid="uid://b8rntfto8sibn" path="res://Assets/shaders/blur.tres" id="14_pd2sw"]
+[ext_resource type="Material" uid="uid://b8rntfto8sibn" path="res://Assets/Shaders/blur.tres" id="14_pd2sw"]
 [ext_resource type="Script" path="res://Scripts/Managers/weather.gd" id="15_7paqb"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1bp0e"]

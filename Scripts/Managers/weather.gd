@@ -8,10 +8,12 @@ extends Node
 var current_weather: String
 var previous_weather: String
 
+# Seed/start weather loop
 func _ready():
 	randomize()
 	weather_select()
 
+# Selecting new weather type and applying new weather
 func weather_select():
 	if current_weather != null:
 		previous_weather = current_weather
@@ -35,7 +37,8 @@ func weather_select():
 			wind()
 			await wait(randf_range(30.0,60.0))
 			weather_select()
-		
+
+# Selecting new SFX to play to accompany current weather type
 func weather_sound_select():
 	if current_weather != previous_weather:
 		stop_weather_sound()
@@ -49,9 +52,11 @@ func weather_sound_select():
 			Weather_Types.WIND:
 				AudioManager.play_group("WEATHER_WIND", true, true, true)
 
+# Wait function
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
-	
+
+# Applying rain
 func rain():
 	if current_weather != previous_weather:
 		var new_rain_amount = (randf_range(300.0, 2000.0))
@@ -65,7 +70,8 @@ func rain():
 		var tween = get_tree().create_tween()
 		tween.parallel().tween_property(rain_effect, "amount_ratio", (new_rain_amount/rain_effect.amount), 3)
 		tween.parallel().tween_property(rain_effect, "speed_scale", new_rain_scale, 3)
-	
+
+# Applying snow
 func snow():
 	if current_weather != previous_weather:
 		var new_snow_amount = (randf_range(300.0, 2000.0))
@@ -75,12 +81,14 @@ func snow():
 		var new_snow_amount = (randf_range(300.0, 2000.0))
 		var tween = get_tree().create_tween()
 		tween.tween_property(snow_effect, "amount_ratio", (new_snow_amount/snow_effect.amount), 3)
-	
+
+# Applying sun
 func sun():
 	if current_weather != previous_weather:
 		var tween = get_tree().create_tween()
-		tween.tween_property(sun_effect.environment, "glow_intensity", randf_range(0.50, 0.69), 3)
-	
+		tween.tween_property(sun_effect.environment, "glow_intensity", randf_range(0.30, 0.50), 3)
+
+# Applying wind
 func wind():
 	if current_weather != previous_weather:
 		var new_wind_amount = (randf_range(3.0, 8.0))
@@ -96,6 +104,7 @@ func wind():
 		tween.parallel().tween_property(wind_effect, "speed_scale", new_wind_scale, 3)
 		
 
+# Stop previous weather animation
 func stop_weather_anim():
 	if current_weather != null:
 		if current_weather != previous_weather:
@@ -103,8 +112,9 @@ func stop_weather_anim():
 			tween.parallel().tween_property(rain_effect, "amount_ratio", 0.0, 3)
 			tween.parallel().tween_property(snow_effect, "amount_ratio", 0.0, 3)
 			tween.parallel().tween_property(wind_effect, "amount_ratio", 0.0, 3)
-			tween.parallel().tween_property(sun_effect.environment, "glow_intensity", 0.0, 3)
+			tween.parallel().tween_property(sun_effect.environment, "glow_intensity", 0.15, 3)
 
+# Stop previous weather sound
 func stop_weather_sound():
 	match previous_weather:
 		Weather_Types.RAIN:
@@ -115,4 +125,3 @@ func stop_weather_sound():
 			AudioManager.stop_group("CITY_SOUNDS", true)
 		Weather_Types.WIND:
 			AudioManager.stop_group("WEATHER_WIND", true)
-	#currently not fading out of sound.
