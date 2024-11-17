@@ -2,10 +2,13 @@ extends CharacterBody2D
 
 @onready var animated_sprite := $AnimatedSprite2D
 @onready var hitbox := $CollisionShape2D
+@onready var weather: Node = $WeatherControlNode
 
 @export var max_wall_jumps := 1
 var wall_jumps_remaining := max_wall_jumps
 var is_wall_sliding := false
+var inverted: bool = false
+var jeb: bool = false
 
 @export var coyote_time_duration := 0.125
 var coyote_time_remaining := 0.0
@@ -63,8 +66,12 @@ func _physics_process(delta):
 func movement():
 	var move_down = Input.is_action_pressed("move_down")
 	var move_fast = Input.is_action_pressed("move_fast")
-	var left_right_movement = Input.get_axis("move_left","move_right")
-	player.direction = left_right_movement
+	if inverted == false:
+		var left_right_movement = Input.get_axis("move_left","move_right")
+		player.direction = left_right_movement
+	else:
+		var left_right_movement = Input.get_axis("move_right","move_left")
+		player.direction = left_right_movement
 	if player.direction != 0:
 		last_moved_direction = player.direction
 		if move_down:
@@ -87,6 +94,12 @@ func movement():
 		velocity.x = walk_speed
 	elif velocity.x < 0 and !move_down and !move_fast:
 		velocity.x = -walk_speed
+	if velocity.x > 0:
+		if weather.wind_effect.amount_ratio == 1:
+			velocity.x *= 0.5
+	if velocity.x < 0:
+		if weather.wind_effect.amount_ratio == 1:
+			velocity.x *= 1.5
 
 func floor_jumping(delta):
 	var move_up = Input.is_action_pressed("move_up")
@@ -105,6 +118,9 @@ func wall_jumping():
 		wall_jumps_remaining -= 1
 
 func animate():
+	if jeb == true:
+		animated_sprite.flip_v = true
+	
 	if is_on_floor():
 		animated_sprite.play(player.animation)
 	
