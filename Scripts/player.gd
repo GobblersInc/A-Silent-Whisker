@@ -38,6 +38,46 @@ var max_hop := .2
 
 var last_moved_direction := 0
 
+var move_left_right = 0.0
+var move_down = false
+var move_fast = false
+var move_up = false
+var jump_pressed = false
+var jump_released = false
+var test_action = false
+
+func _ready() -> void:
+	# Connect signals from InputManager
+	InputManager.connect("move_left_right", _on_move_left_right)
+	InputManager.connect("move_down", _on_move_down)
+	InputManager.connect("move_fast", _on_move_fast)
+	InputManager.connect("move_up", _on_move_up)
+	InputManager.connect("jump_pressed", _on_jump_pressed)
+	InputManager.connect("jump_released", _on_jump_released)
+	InputManager.connect("test_action", _on_test_action)
+
+func _on_move_left_right(left_right: float):
+	move_left_right = left_right
+
+func _on_move_down(state: bool):
+	move_down = state
+
+func _on_move_fast(state: bool):
+	move_fast = state
+
+func _on_move_up(state: bool):
+	move_up = state
+
+func _on_jump_pressed(state: bool):
+	jump_pressed = state
+
+func _on_jump_released(state: bool):
+	jump_released = state
+
+func _on_test_action(state: bool):
+	test_action = state
+
+
 func _physics_process(delta):
 	var is_grounded := is_on_floor()
 	var is_touching_wall := is_on_wall()
@@ -66,14 +106,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func movement():
-	var move_down = Input.is_action_pressed("move_down")
-	var move_fast = Input.is_action_pressed("move_fast")
-	if inverted == false:
-		var left_right_movement = Input.get_axis("move_left","move_right")
-		player.direction = left_right_movement
-	else:
-		var left_right_movement = Input.get_axis("move_right","move_left")
-		player.direction = left_right_movement
+	player.direction = move_left_right
+
 	if player.direction != 0:
 		last_moved_direction = player.direction
 		if move_down:
@@ -105,18 +139,16 @@ func movement():
 			velocity.x *= 1.5
 
 func floor_jumping(delta):
-	var move_up = Input.is_action_pressed("move_up")
 	if move_up and jump_time < max_hop and coyote_time_remaining > 0:
 		jump_time += delta
 		velocity.y = jump_speed
-	elif Input.is_action_just_released("move_up"):
-		jump_time = 9999
+	# elif Input.is_action_just_released("move_up"):
+	# 	jump_time = 9999
 	elif !is_on_floor():
 		velocity.y += fall_speed * delta
 
 func wall_jumping():
-	var wall_move_up = Input.is_action_just_pressed("move_up")
-	if wall_move_up:
+	if move_up:
 		velocity.y = wall_jump_speed
 		wall_jumps_remaining -= 1
 

@@ -1,54 +1,54 @@
 extends Node
 
-# list of input types and their category 
-
-signal Movement()
-signal benis(state, text)
-
-@onready var dialog_manager = get_node("/root/DialogManager")
-
+# Signals for different types of input
+signal move_left_right(direction: float)
+signal move_down(state: bool)
+signal move_fast(state: bool)
+signal move_up(state: bool)
+signal jump_pressed()
+signal jump_released()
+signal test_action()
 var paralyzed = false
 
+@onready var dialog_manager = get_node("/root/DialogManager")
+signal benis(state, text)
+
+# Store input states
+var inverted = false
+
 func _ready() -> void:
-	dialog_manager.connect("dialog_update", _on_dialog_update)
-	
-func _on_dialog_update(state: bool):
-	paralyzed = state
+    dialog_manager.connect("dialog_update", _on_dialog_update)
 
-var is_vis = false
+func _on_dialog_update(state, _text):
+    paralyzed = state
 
-func _input(event: InputEvent) -> void:
-	# Ignore input if player needs to be still (ex: reading dialog)
-	if Input.is_action_just_pressed("test"):
-		if is_vis:
-			benis.emit(false, "")
-			is_vis = false
-		else:
-			is_vis = true
-			benis.emit(true, "idk")
-	
-	if paralyzed:
-		# They can press the interact button to break out of it.
-		if Input.is_action_pressed("interact"):
-			paralyzed = false
-		return
-	
-	if Input.is_action_pressed("move_down") or Input.is_action_pressed("move_fast") or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") or Input.is_action_pressed("move_up"):
-		Movement.emit()
-	
-#input manager
-#
-#listens to player input
-#sends signals to areas depending on what player pressed?
-#
-#current signals we are working with
-#movement signals (wasd arrow keys, c shft, ctrl)
-#Escape
-#
-#(dont forget mouse movement)
-#
-#anytime input is recieved needs to check
-#> is it escape?
-  #> send signal to pause/unpause the game
-#> is it movement?
-  #> send the type of movement to the player script
+func _process(_delta):
+    # Detect "test" action and emit signal
+    if Input.is_action_just_pressed("test"):
+        if paralyzed:
+            benis.emit(false, "")
+        else:
+            benis.emit(true, "IDK")
+    # Detect horizontal movement and emit signal
+    if paralyzed:
+        move_left_right.emit(0)
+        move_up.emit(false)
+    else:
+        var left_right_movement = Input.get_axis("move_left", "move_right") if not inverted else Input.get_axis("move_right", "move_left")
+        move_left_right.emit(left_right_movement)
+        
+        # Detect "move_down" and emit signal
+        var down = Input.is_action_pressed("move_down")
+        move_down.emit(down)
+        
+        # Detect "move_fast" and emit signal
+        var fast = Input.is_action_pressed("move_fast")
+        move_fast.emit(fast)
+        
+        # Detect "move_up" and emit signals for pressed/released states
+        var up = Input.is_action_pressed("move_up")
+        move_up.emit(up)
+        if Input.is_action_just_pressed("move_up"):
+            jump_pressed.emit()
+        if Input.is_action_just_released("move_up"):
+            jump_released.emit()

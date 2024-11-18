@@ -6,8 +6,8 @@ signal dialog_update(state, text)
 
 func _ready():
 	input_manager.connect("benis", _on_benis)
-	hide()  # Initially hide the dialog box
 
 func _on_benis(state, text: String = ""):
 	print("BENIS CHECK")
+	print(state)
 	dialog_update.emit(state, text)
