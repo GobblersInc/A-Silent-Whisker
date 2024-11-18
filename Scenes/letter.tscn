@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwtjs7e8lpxts"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/letter_class.gd" id="1_gcqyb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tveg0"]
+
+[node name="Letter" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_tveg0")
+script = ExtResource("1_gcqyb")
