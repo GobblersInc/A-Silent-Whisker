@@ -15,10 +15,17 @@ func _ready() -> void:
 func _on_dialog_update(state: bool):
 	paralyzed = state
 
+var is_vis = false
+
 func _input(event: InputEvent) -> void:
 	# Ignore input if player needs to be still (ex: reading dialog)
 	if Input.is_action_just_pressed("test"):
-		benis.emit(true, "idk")
+		if is_vis:
+			benis.emit(false, "")
+			is_vis = false
+		else:
+			is_vis = true
+			benis.emit(true, "idk")
 	
 	if paralyzed:
 		# They can press the interact button to break out of it.
