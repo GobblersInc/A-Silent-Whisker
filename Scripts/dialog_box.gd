@@ -14,7 +14,8 @@ func hide_dialog():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	dialog_manager.connect("dialog_update", _on_dialog_update)
+	if dialog_manager:
+		dialog_manager.connect("dialog_update", _on_dialog_update)
 
 func _on_dialog_update(state, text):
 	if state:

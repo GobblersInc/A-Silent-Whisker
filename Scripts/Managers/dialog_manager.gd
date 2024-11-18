@@ -9,4 +9,5 @@ func _ready():
 	hide()  # Initially hide the dialog box
 
 func _on_benis(state, text: String = ""):
-	dialog_update.emit()
+	print("BENIS CHECK")
+	dialog_update.emit(state, text)
