@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://c1ifcmjlefw85"]
+[gd_scene load_steps=107 format=4 uid="uid://c1ifcmjlefw85"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/save_manager.gd" id="1_d287d"]
 [ext_resource type="Texture2D" uid="uid://wysqrqamieps" path="res://Assets/Parallax/back.png" id="1_sn3yr"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dysc20a8a41hl" path="res://Assets/PlayerSprites/Cat/Slide/CatWallSlide.png" id="14_x1uy4"]
 [ext_resource type="Script" path="res://Scripts/Managers/weather.gd" id="15_7paqb"]
 [ext_resource type="Script" path="res://Scripts/Managers/cheat_manager.gd" id="18_d5thk"]
+[ext_resource type="PackedScene" uid="uid://cxdm6je1mk8i6" path="res://Scenes/dialog_box.tscn" id="19_3edhx"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1bp0e"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 0, -16, 0)
@@ -1217,6 +1218,12 @@ script = ExtResource("15_7paqb")
 
 [node name="CheatControlNode" type="Node" parent="."]
 script = ExtResource("18_d5thk")
+
+[node name="DialogBox" parent="." instance=ExtResource("19_3edhx")]
+offset_left = 155.0
+offset_top = 251.0
+offset_right = 155.0
+offset_bottom = 251.0
 
 [connection signal="value_changed" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MasterHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_master_h_slider_value_changed"]
 [connection signal="drag_ended" from="Player/OverlayUIControl/SettingsControl/SettingsBackground/MarginContainer/SVBoxContainer/MusicHSlider" to="Player/OverlayUIControl/SettingsControl" method="_on_music_h_slider_drag_ended"]

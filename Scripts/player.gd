@@ -10,6 +10,8 @@ var is_wall_sliding := false
 var inverted: bool = false
 var jeb: bool = false
 
+signal activate_dialog(text)
+
 @export var coyote_time_duration := 0.125
 var coyote_time_remaining := 0.0
 
@@ -88,6 +90,7 @@ func movement():
 		velocity.x = player.direction * walk_speed
 		if move_down:
 			player.animation = "crouch"
+			activate_dialog.emit("test")
 		else:
 			player.animation = "idle"
 	if velocity.x > 0 and !move_down and !move_fast:

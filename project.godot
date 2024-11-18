@@ -22,6 +22,7 @@ SaveManager="*res://Scripts/Managers/save_manager.gd"
 InputManager="*res://Scripts/Managers/input_manager.gd"
 AudioManager="*res://Scripts/Sound/audio_manager.gd"
 AudioPlayerPool="*res://Scripts/Sound/player_pool.gd"
+DialogManager="*res://Scripts/Managers/dialog_manager.gd"
 
 [display]
 
