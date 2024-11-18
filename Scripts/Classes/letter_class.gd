@@ -15,3 +15,29 @@ func _on_body_entered(body):
 		is_collected = true
 		# add to player inventory function
 		queue_free()
+
+#NOTE just my notes on what to do
+#letter scene
+#- node2d
+#- sprite
+#- collision 
+#
+#letter class
+#- vars
+#1. id: int
+#to: array
+#2. destination: string
+#3. contents: script for dialog? array
+#4. is_delivered: bool
+#- logic for "collecting" 
+#- send to inv
+#
+#modify player class
+#- inventory system (also tracks history of letters)
+#
+#modify save
+#- include the history and current inventory of delivered/undelivered letters
+#
+#modify load
+#- put the history back into the inventory
+#
