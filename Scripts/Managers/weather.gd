@@ -1,127 +1,142 @@
 extends Node
 
 @onready var weather_array: Array = [Weather_Types.RAIN, Weather_Types.SNOW, Weather_Types.SUN, Weather_Types.WIND]
+
+@onready var weather_sounds_groups: Dictionary = {
+	"Rain" : "WEATHER_RAIN", 
+	"Snow" : "WEATHER_SNOW", 
+	"Sun" : "CITY_SOUNDS", 
+	"Wind" : "WEATHER_WIND"
+	}
+
 @onready var rain_effect: GPUParticles2D = $"../Rain"
 @onready var snow_effect: GPUParticles2D = $"../Snow"
-@onready var wind_effect: GPUParticles2D = $"../Wind"
 @onready var sun_effect: WorldEnvironment = $"../Sun"
-var current_weather: String
-var previous_weather: String
+@onready var wind_effect: GPUParticles2D = $"../Wind"
 
-# Seed/start weather loop
+@onready var weather_effects: Dictionary = {
+	"Rain" : rain_effect, 
+	"Snow" : snow_effect, 
+	"Sun" : sun_effect, 
+	"Wind" : wind_effect
+	}
+	
+var current_weather: Array[String]
+var queued_weather: Array[String]
+var common_weather: Array[String]
+var discontinued_weather: Array[String]
+var newly_started_weather: Array[String]
+var giga: bool = false
+var noweather: bool = false
+
+
+# Seed weather; start weather loop
 func _ready():
 	randomize()
-	weather_select()
+	roll_new_weather()
 
-# Selecting new weather type and applying new weather
-func weather_select():
-	if current_weather != null:
-		previous_weather = current_weather
-	current_weather = weather_array[randi_range(0, weather_array.size()-1)]
-	await stop_weather_anim()
-	weather_sound_select()
-	match current_weather:
-		Weather_Types.RAIN:
-			rain()
-			await wait(randf_range(30.0,60.0))
-			weather_select()
-		Weather_Types.SNOW:
-			snow()
-			await wait(randf_range(30.0,60.0))
-			weather_select()
-		Weather_Types.SUN:
-			sun()
-			await wait(randf_range(30.0,60.0))
-			weather_select()
-		Weather_Types.WIND:
-			wind()
-			await wait(randf_range(30.0,60.0))
-			weather_select()
-
-# Selecting new SFX to play to accompany current weather type
-func weather_sound_select():
-	if current_weather != previous_weather:
-		stop_weather_sound()
-		match current_weather:
-			Weather_Types.RAIN:
-				AudioManager.play_group("WEATHER_RAIN", true, true, true)
-			Weather_Types.SNOW:
-				AudioManager.play_group("WEATHER_SNOW", true, true, true)
-			Weather_Types.SUN:
-				AudioManager.play_group("CITY_SOUNDS", true, true, true)
-			Weather_Types.WIND:
-				AudioManager.play_group("WEATHER_WIND", true, true, true)
-
-# Wait function
-func wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout
-
-# Applying rain
-func rain():
-	if current_weather != previous_weather:
-		var new_rain_amount = (randf_range(300.0, 2000.0))
-		var new_rain_scale = (randf_range(1.0, 2.0))
-		var tween = get_tree().create_tween()
-		tween.parallel().tween_property(rain_effect, "amount_ratio", (new_rain_amount/rain_effect.amount), 3)
-		tween.parallel().tween_property(rain_effect, "speed_scale", new_rain_scale, 3)
+# Exterior facing function - sets weather, tweens out previous weather + sound, tweens in new weather + sound.
+func set_weather(weather: Array[String], intensity: Array[float], speed: Array[int], duration: int, override: bool = false):
+	# Weather array - List of requested weathers with a max of 2 types that conform to Weather_Types.Valid_Weather_Pairs. If given an empty Array, will process as no weather.
+	# Intensity - min value of 0.01, max value of 1.00
+	# Speed - min value of 1, max value of 3
+	# Duration - seconds of weather, 0 = infinite
+	if noweather == true:
+		current_weather.clear()
+		weather.clear()
 	else:
-		var new_rain_amount = (randf_range(300.0, 2000.0))
-		var new_rain_scale = (randf_range(1.0, 2.0))
-		var tween = get_tree().create_tween()
-		tween.parallel().tween_property(rain_effect, "amount_ratio", (new_rain_amount/rain_effect.amount), 3)
-		tween.parallel().tween_property(rain_effect, "speed_scale", new_rain_scale, 3)
+		if not weather.is_empty():
+			queued_weather = weather.duplicate(true)
+			# Compare current weather array to new weather array, finds commonalities and differences, splits them into 3 arrays (common, discontinued, and newly_started)
+			_weather_change_preparation()
+			current_weather = weather.duplicate(true)
+			# Iterate through common_weather, tweening from existing values to new values of intensity and speed.
+			var count := 0
+			if not common_weather.is_empty():
+				for index in common_weather:
+					var tween = get_tree().create_tween()
+					if index == "Sun":
+						tween.parallel().tween_property(sun_effect.environment, "glow_intensity", intensity[count-1], 3)
+					else:
+						tween.parallel().tween_property(weather_effects[index], "amount_ratio", intensity[count-1], 3)
+						tween.parallel().tween_property(weather_effects[index], "speed_scale", speed[count-1], 3)
+					count += 1
+			count = 0
+			# Iterate through discontinued_weather, shutting off weather + sounds.
+			if not discontinued_weather.is_empty():
+				for index in discontinued_weather:
+					var tween = get_tree().create_tween()
+					if index == "Sun":
+						tween.parallel().tween_property(sun_effect.environment, "glow_intensity", 0.15, 3)
+						AudioManager.stop_group("CITY_SOUNDS", true)
+					else:
+						tween.parallel().tween_property(weather_effects[index], "amount_ratio", 0, 3)
+						tween.parallel().tween_property(weather_effects[index], "speed_scale", 1, 3)
+						AudioManager.stop_group(weather_sounds_groups[index], true)
+						await get_tree().create_timer(3).timeout
+						weather_effects[index].emitting = false
+					count += 1
+			count = 0
+			# Iterate through newly_started_weather, turning on new weather + sounds.
+			if not newly_started_weather.is_empty():
+				for index in newly_started_weather:
+					var tween = get_tree().create_tween()
+					if index == "Sun":
+						tween.parallel().tween_property(sun_effect.environment, "glow_intensity", intensity[count-1], 3)
+						AudioManager.play_group("CITY_SOUNDS", true, true, true)
+					else:
+						weather_effects[index].amount_ratio = 0
+						weather_effects[index].emitting = true
+						tween.parallel().tween_property(weather_effects[index], "amount_ratio", intensity[count-1], 3)
+						tween.parallel().tween_property(weather_effects[index], "speed_scale", speed[count-1], 3)
+						AudioManager.play_group(weather_sounds_groups[index], true, true, true)
+					count += 1
+			# If duration given to function is 0, given weather will persist indefinitely until given another set of entries.
+			if duration == 0:
+				pass
+			# If 5th variable (override: bool) given to function is true, another weather roll will not occur. This would normally only occur when the duration given is 0 and the weather should run indefinitely.
+			elif !override:
+				await get_tree().create_timer(duration).timeout
+				roll_new_weather()
 
-# Applying snow
-func snow():
-	if current_weather != previous_weather:
-		var new_snow_amount = (randf_range(300.0, 2000.0))
-		var tween = get_tree().create_tween()
-		tween.tween_property(snow_effect, "amount_ratio", (new_snow_amount/snow_effect.amount), 3)
+# Function to parse the current_weather + queued_weather, returning common_weather, discontinued_weather, and newly_started_weather.
+func _weather_change_preparation():
+	common_weather.clear()
+	discontinued_weather.clear()
+	newly_started_weather.clear()
+	if not current_weather.is_empty():
+		for c_weather in current_weather:
+			if c_weather in queued_weather:
+				common_weather.append(c_weather)
+			else:
+				discontinued_weather.append(c_weather)
+		for q_weather in queued_weather:
+			if q_weather not in current_weather:
+				newly_started_weather.append(q_weather)
 	else:
-		var new_snow_amount = (randf_range(300.0, 2000.0))
-		var tween = get_tree().create_tween()
-		tween.tween_property(snow_effect, "amount_ratio", (new_snow_amount/snow_effect.amount), 3)
+		newly_started_weather = queued_weather.duplicate(true)
 
-# Applying sun
-func sun():
-	if current_weather != previous_weather:
-		var tween = get_tree().create_tween()
-		tween.tween_property(sun_effect.environment, "glow_intensity", randf_range(0.30, 0.50), 3)
-
-# Applying wind
-func wind():
-	if current_weather != previous_weather:
-		var new_wind_amount = (randf_range(3.0, 8.0))
-		var new_wind_scale = (randf_range(1.0, 2.0))
-		var tween = get_tree().create_tween()
-		tween.parallel().tween_property(wind_effect, "amount_ratio", (new_wind_amount/wind_effect.amount), 3)
-		tween.parallel().tween_property(wind_effect, "speed_scale", new_wind_scale, 3)
+# Function for rolling new weather type, intensity, speed, and duration.
+func roll_new_weather():
+	var new_weather: Array[String]
+	# % chance of 1 or 2 weather types.
+	if randi_range(1, 100) >= 20:
+		new_weather.clear()
+		new_weather.append(weather_array.pick_random())
 	else:
-		var new_wind_amount = (randf_range(3.0, 8.0))
-		var new_wind_scale = (randf_range(1.0, 2.0))
-		var tween = get_tree().create_tween()
-		tween.parallel().tween_property(wind_effect, "amount_ratio", (new_wind_amount/wind_effect.amount), 3)
-		tween.parallel().tween_property(wind_effect, "speed_scale", new_wind_scale, 3)
-		
-
-# Stop previous weather animation
-func stop_weather_anim():
-	if current_weather != null:
-		if current_weather != previous_weather:
-			var tween = get_tree().create_tween()
-			tween.parallel().tween_property(rain_effect, "amount_ratio", 0.0, 3)
-			tween.parallel().tween_property(snow_effect, "amount_ratio", 0.0, 3)
-			tween.parallel().tween_property(wind_effect, "amount_ratio", 0.0, 3)
-			tween.parallel().tween_property(sun_effect.environment, "glow_intensity", 0.15, 3)
-
-# Stop previous weather sound
-func stop_weather_sound():
-	match previous_weather:
-		Weather_Types.RAIN:
-			AudioManager.stop_group("WEATHER_RAIN", true)
-		Weather_Types.SNOW:
-			AudioManager.stop_group("WEATHER_SNOW", true)
-		Weather_Types.SUN:
-			AudioManager.stop_group("CITY_SOUNDS", true)
-		Weather_Types.WIND:
-			AudioManager.stop_group("WEATHER_WIND", true)
+		# Selecting a valid weather duo
+		new_weather = (Weather_Types.Valid_Weather_Pairs).pick_random().duplicate(true)
+	var intensity: Array[float]
+	for i in range(new_weather.size()):
+		if giga == true:
+			intensity.append(randf_range(0.85, 1.0))
+		else:	
+			intensity.append(randf_range(0.2, 0.3))
+	var speed: Array[int]
+	for i in range(new_weather.size()):
+		if giga == true:
+			speed.append(randi_range(2, 3))
+		else:
+			speed.append(randi_range(1, 2))
+	var duration: int = (randi_range(5, 15))
+	set_weather(new_weather, intensity, speed, duration, false)

@@ -95,10 +95,10 @@ func movement():
 	elif velocity.x < 0 and !move_down and !move_fast:
 		velocity.x = -walk_speed
 	if velocity.x > 0:
-		if weather.wind_effect.amount_ratio == 1:
+		if weather.wind_effect.amount_ratio >= 0.9:
 			velocity.x *= 0.5
 	if velocity.x < 0:
-		if weather.wind_effect.amount_ratio == 1:
+		if weather.wind_effect.amount_ratio >= 0.9:
 			velocity.x *= 1.5
 
 func floor_jumping(delta):

@@ -60,18 +60,17 @@ func play_group(group_name: String, should_play_all_group: bool, should_be_rando
 	return audio_group
 
 func stop_group(group_name: String, stop_all: bool):
-	for i in range(_audio_groups.size()):
-		var audio_group = _audio_groups[i]
-		
-		# Check if the group's name matches the specified group name
-		if audio_group.group_name == group_name:
-			# Dispose of the player in the AudioStreamManager
-			audio_group.audio_stream_manager.dispose_audio_player()
+	# Filter groups that match the name
+	var groups_to_stop = _audio_groups.filter(func(audio_group):
+		return audio_group.group_name == group_name
+	)
 
-			# Remove the group from the _audio_groups list
-			_audio_groups.remove_at(i)
-			i -= 1  # Adjust index after removal
+# Iterate through matching groups
+	for audio_group in groups_to_stop:
+		# Dispose of the player in the AudioStreamManager
+		audio_group.audio_stream_manager.dispose_audio_player()
+		_audio_groups.erase(audio_group)
 
-			# If stop_all is false, stop after the first match
-			if not stop_all:
-				break
+# If stop_all is false, stop after the first match
+		if not stop_all:
+			break

@@ -16,22 +16,15 @@ func _on_cheat_entry_text_submitted(_new_text):
 	cheat_entry.clear()
 	match text:
 		"gigaweather":
-			match weather.current_weather:
-				Weather_Types.RAIN:
-					var tween = get_tree().create_tween()
-					tween.parallel().tween_property(weather.rain_effect, "amount_ratio", 1, 2)
-					tween.parallel().tween_property(weather.rain_effect, "speed_scale", 3, 2)
-				Weather_Types.SNOW:
-					var tween = get_tree().create_tween()
-					tween.parallel().tween_property(weather.snow_effect, "amount_ratio", 1, 2)
-					tween.parallel().tween_property(weather.snow_effect, "speed_scale", 3, 2)
-				Weather_Types.SUN:
-					var tween = get_tree().create_tween()
-					tween.parallel().tween_property(weather.sun_effect.environment, "glow_intensity", 0.90, 2)
-				Weather_Types.WIND:
-					var tween = get_tree().create_tween()
-					tween.parallel().tween_property(weather.wind_effect, "amount_ratio", 1, 2)
-					tween.parallel().tween_property(weather.wind_effect, "speed_scale", 3, 2)
+			var intensity: Array[float]
+			for i in range(weather.current_weather.size()):
+				intensity.append(randf_range(0.85, 1.0))
+			var speed: Array[int]
+			for i in range(weather.current_weather.size()):
+				speed.append(randi_range(2, 3))
+			var duration: int = (randi_range(5, 15))
+			weather.set_weather(weather.current_weather, intensity, speed, duration, true)
+			weather.giga = true
 		"ezhop":
 			player.max_wall_jumps = 2
 		"cybernetics":
@@ -45,13 +38,9 @@ func _on_cheat_entry_text_submitted(_new_text):
 		"lowgrav":
 			player.fall_speed = 490
 		"nocheats":
-			weather.weather_select()
-			if weather.rain_effect.emitting == false:
-				weather.rain_effect.emitting = true
-				weather.snow_effect.emitting = true
-				weather.wind_effect.emitting = true
-				var tween = get_tree().create_tween()
-				tween.parallel().tween_property(weather.sun_effect.environment, "glow_intensity", 0.15, 2)
+			weather.noweather = false
+			weather.giga = false
+			weather.roll_new_weather()
 			player.max_wall_jumps = 1
 			player.coyote_time_duration = 0.125
 			player.jump_speed = -200
@@ -63,12 +52,16 @@ func _on_cheat_entry_text_submitted(_new_text):
 			player_camera.zoom.x = 1
 			player_camera.zoom.y = 1
 		"noweather":
+			weather.noweather = true
 			weather.rain_effect.emitting = false
 			weather.snow_effect.emitting = false
 			weather.wind_effect.emitting = false
 			var tween = get_tree().create_tween()
 			tween.parallel().tween_property(weather.sun_effect.environment, "glow_intensity", 0.15, 2)
-			weather.stop_weather_sound()
+			AudioManager.stop_group("WEATHER_RAIN", true)
+			AudioManager.stop_group("WEATHER_SNOW", true)
+			AudioManager.stop_group("CITY_SOUNDS", true)
+			AudioManager.stop_group("WEATHER_WIND", true)
 		"inverted":
 			player.inverted = true
 		"grayscale":
